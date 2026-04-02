@@ -21,16 +21,19 @@ body{
     padding: 40px 0;
 }
 .py-80-40{
-    padding: 80px 0 40px 0;
+    padding: 80px 0 40px;
 }
 .py-40-80{
-    padding: 40px 0 80px 0;
+    padding: 40px 0 80px;
 }
 .w-100{
     width: 100%;
 }
 .text-white{
-    color: #fff;
+    color: #fff !important;
+}
+.text-center{
+    text-align: center;
 }
 header{
     background-color: #000;
@@ -108,6 +111,10 @@ nav ul li:hover .navlinks{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 15px;
+}
+.header-content1{
+    text-align: center;
     margin-bottom: 15px;
 }
 .section-header-ttl{
@@ -391,4 +398,120 @@ nav ul li:hover .navlinks{
 }
 .hero-slider-btn:focus{
     outline: none;
+}
+.review-slide{
+    text-align: center;
+    cursor: pointer;
+}
+.customer-review-img{
+    width: 40px;
+    margin: 30px auto 20px;
+}
+.customer-review-text{
+    width: 56%;
+    margin: 0 auto;
+    line-height: 1.5;
+    color: #717171;
+}
+.customer-review-footer{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+.customer-review-name{
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: start;
+}
+.customer-review-position{
+    font-size: 14px;
+    color: #717171;
+}
+.customer-image{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px solid #5ad109;
+}
+.customer-image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+footer{
+    padding: 80px 0 40px;
+    background-color: #000;
+}
+.footer-logo{
+    width: 120px;
+    margin-bottom: 20px;
+}
+.footer-main{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.footer-box h4{
+    color: #fff;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+.footer-box p{
+    color: #fff;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 100;
+    line-height: 1.5;
+}
+.footer-box ul li{
+    margin-bottom: 10px;
+}
+.footer-box ul li a{
+    color: #fff;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 100;
+    line-height: 1.5;
+    text-decoration: none;
+}
+.newsletterFormBox{
+    background-color: #fff;
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+.newsletterFormBox input{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-right: 10px;
+}
+.newsletterFormBox button{
+    background-color: #0000;
+    border: 0;
+    padding: 15px 0;
+}
+.footer-bottom{
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #dbffc3;
+    text-align: center;
+}
+.footer-bottom p{
+    color: #fff;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 100;
+    line-height: 1.5;
 }
