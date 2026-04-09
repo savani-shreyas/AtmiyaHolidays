@@ -594,6 +594,9 @@ footer{
 .mb-30{
     margin-bottom: 30px;
 }
+.mb-20{
+    margin-bottom: 20px;
+}
 .mb-5{
     margin-bottom: 5px;
 }
@@ -793,4 +796,21 @@ footer{
 }
 .twitter-outline{
     border: 2px solid #00aaec;
+}
+.blog-date-box{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin: 10px 0 30px;
+}
+.blog-date-icon{
+    width: 20px;
+    height: 20px;
+}
+.blog-date{
+    font-size: 14px;
+    line-height: 1.5;
+    text-transform: capitalize;
 }
