@@ -7,6 +7,10 @@ body{
     height: 100vh;
     box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+    color: #000;
+}
 .container{
     width: 90%;
     margin: 0 auto;
@@ -28,6 +32,9 @@ body{
 }
 .w-100{
     width: 100%;
+}
+.mb-0{
+    margin-bottom: 0 !important;
 }
 .text-white{
     color: #fff !important;
@@ -98,13 +105,11 @@ nav ul li:hover .navlinks{
 .navlinks{
     color: #fff;
     text-transform: uppercase;
-    text-decoration: none;
     font-size: 14px;
 }
 .header-btn{
     color: #fff;
     text-transform: capitalize;
-    text-decoration: none;
     font-size: 14px;
     padding: 10px 20px;
     border: 1.5px solid #5ad109;
@@ -502,7 +507,6 @@ footer{
     text-transform: capitalize;
     font-weight: 100;
     line-height: 1.5;
-    text-decoration: none;
 }
 .newsletterFormBox{
     background-color: #fff;
@@ -706,7 +710,6 @@ footer{
 .btn--1{
     font-size: 14px;
     text-transform: capitalize;
-    text-decoration: none;
     background-color: #000;
     border: 1.5 px solid #000;
     color: #fff;
@@ -757,7 +760,6 @@ footer{
     gap: 15px;
     margin-bottom: 20px;
     color: #000;
-    text-decoration: none;
     line-height: 1.5;
 }
 .contact-info-box img{
@@ -806,11 +808,118 @@ footer{
     margin: 10px 0 30px;
 }
 .blog-date-icon{
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 .blog-date{
     font-size: 14px;
     line-height: 1.5;
     text-transform: capitalize;
+}
+.blog-details-page{
+    width: 100%;
+    display: grid;
+    grid-template-columns: .5fr 1.5fr;
+    gap: 30px;
+}
+.blog-details-page-content p{
+    font-size: 14px;
+    line-height: 1.5;
+    text-transform: capitalize;
+    text-align: justify;
+}
+.blog-details-page-bottom{
+    background-color: #000;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+.blog-details-page-bottom-inner{
+    margin: 20px;
+    padding: 20px 0;
+}
+.blog-details-page-bottom-inner .contact-info-box img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    object-position: center;
+    filter: invert(1);
+}
+.blog-details-page-top h3{
+    margin: 20px;
+}
+.blog-details-page-top{
+    width: 100%;
+    box-shadow: 0 0 10px 1px #91919133;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.blog-details-page-top ul{
+    width: 100%;
+    list-style: none;
+}
+.blog-details-page-top ul li{
+    margin: 20px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+}
+.blog-details-page-top ul li a{
+    font-size: 14px;
+    line-height: 1.5;
+    text-transform: capitalize;
+    color: #000;
+}
+.blog-details-page-top ul li a:hover{
+    color: #5ad109;
+}
+.blog-main{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+.blog-card{
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px 1px #91919133;
+    background-color: #fff;
+}
+.blog-card .blog-date-box{
+    justify-content: start;
+    margin: 6px 0 0;
+}
+.blog-content {
+    padding: 10px 10px 25px;
+    background-color: #fff;
+}
+.blog-header{
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.blog-btn{
+    color: #000;
+    background-color: #fff;
+    border: 1.5px solid #000;
+    padding: 8px 20px;
+    border-radius: 25px;
+    text-transform: capitalize;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+.blog-btn:hover{
+    color: #fff;
+    background-color: #000;
+}
+.blog-btn.active{
+    color: #fff;
+    background-color: #000;
+}
+.blog-title{
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: 600;
+    line-height: 1.5;
 }
