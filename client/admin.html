@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Atmiya Holidays</title>
+    <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --gold: #f59e0b;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Login Screen */
+        #login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(30,41,59,0.95) 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .login-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-card h2 {
+            margin-bottom: 24px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Sidebar Dashboard */
+        #dashboard {
+            display: none;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--primary);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            padding: 24px 0;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-brand {
+            padding: 0 24px 32px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary-light);
+            color: white;
+            border-left: 4px solid var(--accent);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 32px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .topbar h1 {
+            font-size: 1.75rem;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            padding: 10px 16px;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline:hover {
+            background: #f1f5f9;
+        }
+
+        /* Data Tables */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-muted);
+            background: #f8fafc;
+        }
+
+        td {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+            padding: 6px;
+            border-radius: 6px;
+        }
+
+        .btn-icon:hover {
+            background: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .btn-icon.delete:hover {
+            color: #ef4444;
+            background: #fef2f2;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* File Upload */
+        .file-drop-area {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+
+        .file-drop-area:hover {
+            border-color: var(--accent);
+            background: #eff6ff;
+        }
+
+        .image-preview-container {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .img-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        #error-msg { color: #ef4444; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div id="login-screen">
+        <div class="login-card">
+            <h2>Admin Access</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" class="form-input" required placeholder="admin">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" class="form-input" required placeholder="••••••••">
+                </div>
+                <div id="error-msg">Invalid credentials</div>
+                <button type="submit" class="btn-primary" style="margin-top: 12px;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="./asset/images/Logo/main_logo.png" alt="Logo For Admin" class="header-logo-image">
+            </div>
+            <nav>
+                <div class="nav-link active" data-target="trips-section">
+                    <i data-lucide="map"></i>
+                    Manage Trips
+                </div>
+                <div class="nav-link" data-target="blogs-section">
+                    <i data-lucide="layout"></i>
+                    Manage Blogs
+                </div>
+                <div class="nav-link" data-target="settings-section">
+                    <i data-lucide="settings"></i>
+                    Site Settings
+                </div>
+                <div class="nav-link" style="margin-top: auto; color: #ef4444;" id="logout-btn">
+                    <i data-lucide="log-out"></i>
+                    Logout
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content (Trips - Placeholder) -->
+        <main class="main-content" id="trips-section">
+            <div class="topbar">
+                <h1>Trips Management</h1>
+                <button class="btn-primary" style="width: auto;" id="add-trip-btn">
+                    <i data-lucide="plus" style="width:18px;height:18px;display:inline-block;vertical-align:middle;margin-right:4px;"></i>
+                    Add New Trip
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Trips</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Destination</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trips-table-body">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Main Content (Blogs) -->
+        <main class="main-content" id="blogs-section" style="display: none;">
+            <div class="topbar">
+                <h1>Blog Management</h1>
+                <button class="btn-primary" style="width: auto;" id="add-blog-btn">
+                    <i data-lucide="plus" style="width:18px;height:18px;display:inline-block;vertical-align:middle;margin-right:4px;"></i>
+                    Add New Blog
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Articles</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="blogs-table-body">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Main Content (Settings) -->
+        <main class="main-content" id="settings-section" style="display: none;">
+            <div class="topbar">
+                <h1>Site Settings</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Global Configuration</h3>
+                </div>
+                <form id="settings-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label>Contact Phone</label>
+                            <input type="text" id="setting-phone" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Email</label>
+                            <input type="email" id="setting-email" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sidebar Title</label>
+                        <input type="text" id="setting-sidebar-title" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Sidebar Description</label>
+                        <textarea id="setting-sidebar-desc" class="form-input" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Global Blog Banner</label>
+                        <div class="file-drop-area" onclick="document.getElementById('setting-banner').click()">
+                            <i data-lucide="image" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                            <p>Click to browse global blog banner</p>
+                        </div>
+                        <input type="file" id="setting-banner" accept="image/*" style="display:none;" onchange="previewSettingBanner(this)">
+                        <div id="setting-banner-preview" class="image-preview-container"></div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: auto; padding: 12px 32px;">Save Settings</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+
+
+    <!-- Add Trip Modal -->
+    <div class="modal" id="trip-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-trip-modal"><i data-lucide="x"></i></button>
+            <h2 style="margin-bottom: 24px; color: var(--primary);">Add New Trip</h2>
+            <form id="add-trip-form">
+                <div class="form-group">
+                    <label>Trip Title</label>
+                    <input type="text" id="trip-title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Destination</label>
+                    <input type="text" id="trip-dest" class="form-input" required placeholder="e.g. Surat, India">
+                </div>
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="text" id="trip-duration" class="form-input" required placeholder="e.g. 5 Days / 4 Nights">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="trip-desc" class="form-input" rows="3" required placeholder="Describe the trip..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Features (comma separated)</label>
+                    <textarea id="trip-features" class="form-input" rows="2" placeholder="e.g. Free Wi-Fi, Professional Guide"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Included Services (comma separated)</label>
+                    <textarea id="trip-services" class="form-input" rows="2" placeholder="e.g. Breakfast, Airport Transfer"></textarea>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Rating (1-5)</label>
+                        <input type="number" id="trip-rating" class="form-input" min="1" max="5" step="0.1" value="5">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Reviews Count</label>
+                        <input type="number" id="trip-reviews" class="form-input" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Price ($)</label>
+                    <input type="number" id="trip-price" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Upload Images (Max 5)</label>
+                    <div class="file-drop-area" onclick="document.getElementById('trip-images').click()">
+                        <i data-lucide="upload-cloud" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                        <p>Click to browse images</p>
+                    </div>
+                    <input type="file" id="trip-images" multiple accept="image/*" style="display:none;" onchange="previewTripImages(this)">
+                    <div class="image-preview-container" id="trip-image-preview-container"></div>
+                </div>
+
+                <button type="submit" class="btn-primary">Create Trip</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Trip Modal -->
+    <div class="modal" id="edit-trip-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-edit-trip-modal"><i data-lucide="x"></i></button>
+            <h2 style="margin-bottom: 24px; color: var(--primary);">Edit Trip</h2>
+            <form id="edit-trip-form">
+                <input type="hidden" id="edit-trip-id">
+                <div class="form-group">
+                    <label>Trip Title</label>
+                    <input type="text" id="edit-trip-title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Destination</label>
+                    <input type="text" id="edit-trip-dest" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Duration</label>
+                    <input type="text" id="edit-trip-duration" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="edit-trip-desc" class="form-input" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Features (comma separated)</label>
+                    <textarea id="edit-trip-features" class="form-input" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Included Services (comma separated)</label>
+                    <textarea id="edit-trip-services" class="form-input" rows="2"></textarea>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Rating (1-5)</label>
+                        <input type="number" id="edit-trip-rating" class="form-input" min="1" max="5" step="0.1">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Reviews Count</label>
+                        <input type="number" id="edit-trip-reviews" class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Price ($)</label>
+                    <input type="number" id="edit-trip-price" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Upload New Images (Max 5, appends to existing)</label>
+                    <div class="file-drop-area" onclick="document.getElementById('edit-trip-images').click()">
+                        <i data-lucide="upload-cloud" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                        <p>Click to browse additional images</p>
+                    </div>
+                    <input type="file" id="edit-trip-images" multiple accept="image/*" style="display:none;" onchange="previewEditTripImages(this)">
+                    <div class="image-preview-container" id="edit-trip-image-preview-container"></div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="background-color: var(--gold); color: #fff;">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Blog Modal -->
+    <div class="modal" id="blog-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-blog-modal"><i data-lucide="x"></i></button>
+            <h2 style="margin-bottom: 24px; color: var(--primary);">Add New Blog</h2>
+            <form id="add-blog-form">
+                <div class="form-group">
+                    <label>Blog Title</label>
+                    <input type="text" id="blog-title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="blog-category" class="form-input" required>
+                        <option value="Honeymoon">Honeymoon</option>
+                        <option value="Family">Family</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Pilgrimage">Pilgrimage</option>
+                        <option value="Travel">Travel</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea id="blog-content" class="form-input" rows="10" required placeholder="Write your blog content here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" id="blog-author" class="form-input" value="Admin">
+                </div>
+                <div class="form-group">
+                    <label>Blog Image</label>
+                    <div class="file-drop-area" onclick="document.getElementById('blog-image').click()">
+                        <i data-lucide="image" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                        <p>Click to browse featured image</p>
+                    </div>
+                    <input type="file" id="blog-image" accept="image/*" style="display:none;" onchange="previewBlogImage(this)">
+                    <div class="image-preview-container" id="blog-image-preview-container"></div>
+                </div>
+
+                <button type="submit" class="btn-primary">Publish Blog</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Blog Modal -->
+    <div class="modal" id="edit-blog-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-edit-blog-modal"><i data-lucide="x"></i></button>
+            <h2 style="margin-bottom: 24px; color: var(--primary);">Edit Blog</h2>
+            <form id="edit-blog-form">
+                <input type="hidden" id="edit-blog-id">
+                <div class="form-group">
+                    <label>Blog Title</label>
+                    <input type="text" id="edit-blog-title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="edit-blog-category" class="form-input" required>
+                        <option value="Honeymoon">Honeymoon</option>
+                        <option value="Family">Family</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Pilgrimage">Pilgrimage</option>
+                        <option value="Travel">Travel</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <textarea id="edit-blog-content" class="form-input" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" id="edit-blog-author" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Update Image (Optional)</label>
+                    <div class="file-drop-area" onclick="document.getElementById('edit-blog-image').click()">
+                        <i data-lucide="image" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                        <p>Click to browse new featured image</p>
+                    </div>
+                    <input type="file" id="edit-blog-image" accept="image/*" style="display:none;" onchange="previewEditBlogImage(this)">
+                    <div class="image-preview-container" id="edit-blog-image-preview-container"></div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="background-color: var(--gold); color: #fff;">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./js/admin.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

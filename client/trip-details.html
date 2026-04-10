@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Details - Atmiya Holidays</title>
+    <link rel="shortcut icon" href="./asset/images/Logo/main_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./asset/css/swiper.css" type="text/css">
+    <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary-modern: #5ad109;
+            --secondary-modern: #1a1a1a;
+            --accent-modern: #ff6b35;
+            --text-muted: #6b7280;
+            --bg-light: #f9fafb;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--secondary-modern);
+        }
+
+        .details-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            overflow: hidden;
+            margin-bottom: -60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .details-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        }
+
+        .hero-info {
+            position: absolute;
+            bottom: 80px;
+            left: 5%;
+            z-index: 2;
+            color: #fff;
+            max-width: 60%;
+        }
+
+        .hero-info h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .details-container {
+            width: 90%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 40px;
+            padding-bottom: 80px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .main-content {
+            background: #fff;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            height: 150px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section-card {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .description {
+            line-height: 1.8;
+            color: #4b5563;
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f3f4f6;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+
+        .feature-box i {
+            color: var(--primary-modern);
+        }
+
+        .sidebar-sticky {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+        }
+
+        .booking-card {
+            background: #fff;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            border: 1px solid #f3f4f6;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary-modern);
+            margin: 5px 0 20px;
+        }
+
+        .price-amount span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .btn-book {
+            width: 100%;
+            padding: 20px;
+            background: var(--primary-modern);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(90, 209, 9, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(90, 209, 9, 0.3);
+        }
+
+        .info-strip {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+            padding: 20px 0;
+            border-top: 1px solid #f3f4f6;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+        }
+
+        .info-item span:first-child {
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1024px) {
+            .details-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-sticky {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-info h1 {
+                font-size: 2.2rem;
+            }
+            .details-hero {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <div class="header">
+                    <div class="logo-box">
+                        <img src="./asset/images/Logo/main_logo.png" alt="Logo" class="header-logo-image">
+                    </div>
+                    <div class="navigation">
+                        <nav>
+                            <ul>
+                                <li><a href="index.html" class="navlinks">home</a></li>
+                                <li><a href="trips.html" class="navlinks">trips</a></li>
+                                <li><a href="admin.html" class="navlinks">admin</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="social-media">
+                        <ul>
+                            <li><a href="#" class="header-btn">help</a></li>
+                            <li><a href="#" class="header-btn">log in</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="details-hero" id="hero-bg">
+            <div class="hero-info">
+                <h1 id="trip-title">Loading Trip...</h1>
+                <div class="hero-meta">
+                    <span id="trip-dest"><i data-lucide="map-pin"></i> ---</span>
+                    <span id="trip-duration-hero"><i data-lucide="clock"></i> ---</span>
+                    <span id="trip-rating-hero"><i data-lucide="star" style="fill: #fbbf24; color: #fbbf24;"></i> ---</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-container">
+            <div class="main-content">
+                <div class="gallery-grid" id="trip-gallery">
+                    <!-- Images will be injected here -->
+                </div>
+
+                <div class="section-card">
+                    <h2 class="section-title"><i data-lucide="info"></i> Overview</h2>
+                    <p class="description" id="trip-desc">Fetching details...</p>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="section-title"><i data-lucide="sparkles"></i> Features</h2>
+                    <div class="features-grid" id="features-list">
+                        <!-- Features will be injected here -->
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2 class="section-title"><i data-lucide="check-circle"></i> What's Included</h2>
+                    <div class="features-grid" id="services-list">
+                        <!-- Services will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-sticky">
+                <div class="booking-card">
+                    <div class="price-label">Price starts from</div>
+                    <div class="price-amount">$<span id="trip-price">0</span> <span>/ person</span></div>
+                    
+                    <div class="info-strip">
+                        <div class="info-item">
+                            <span>Duration</span>
+                            <span id="trip-duration-side">--</span>
+                        </div>
+                        <div class="info-item">
+                            <span>Rating</span>
+                            <span id="trip-rating-side">--</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-book" onclick="alert('Proceeding to booking...')">
+                        <i data-lucide="send"></i> Book This Trip
+                    </button>
+                    
+                    <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
+                        Free cancellation up to 48 hours before.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-box">
+                    <img src="./asset/images/Logo/main_logo.png" alt="footer-logo" class="footer-logo" />
+                    <p>F-10 Orchild Blossiom, Shavion Circle, Gaurav Path Road, Pal-surat 395009.</p>
+                </div>
+                <div class="footer-box">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-box">
+                    <h4>support</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-box">
+                    <h4>newsletter</h4>
+                    <p>Subscribe to the free newsletter and stay up to date</p>
+                    <form action="#" for="newsletterForm" class="newsletterFormBox">
+                        <input type="email" placeholder="Enter your email" required
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address"
+                            id="newsletterForm">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding-top: 20px;">
+                <p>Copyright © 2026 Atmiya Holidays, All rights reserved. Design & Developed by Astrix Digital</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./asset/js/api.js"></script>
+    <script src="./js/trip-details.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
