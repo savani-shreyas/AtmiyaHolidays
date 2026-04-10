@@ -40,3 +40,13 @@ var reviewSwiper = new Swiper(".reviewSwiper", {
         disableOnInteraction: false,
     }
 });
+
+var hotelSwiper = new Swiper(".hotelSwiper", {
+    slidesPerView: 1,
+    loop: true,
+    autoplay: {
+        delay: 6000,
+        disableOnInteraction: false,
+    },
+    spaceBetween: 30,
+});
