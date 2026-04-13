@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '/api';
 
 const api = {
     // Hotels
@@ -74,6 +74,16 @@ const api = {
         try {
             const res = await fetch(`${API_BASE_URL}/blogs`);
             if (!res.ok) throw new Error('Failed to fetch blogs');
+            return await res.json();
+        } catch (err) {
+            console.error(err);
+            return [];
+        }
+    },
+    getReviews: async () => {
+        try {
+            const res = await fetch(`${API_BASE_URL}/reviews`);
+            if (!res.ok) throw new Error('Failed to fetch reviews');
             return await res.json();
         } catch (err) {
             console.error(err);

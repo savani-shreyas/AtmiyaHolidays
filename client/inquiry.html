@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry - Atmiya Holidays</title>
+    <link rel="shortcut icon" href="./asset/images/Logo/main_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #f8fafc;">
+    
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <div class="header">
+                    <div class="logo-box">
+                        <img src="./asset/images/Logo/main_logo.png" alt="Logo" class="header-logo-image">
+                    </div>
+                    <div class="navigation">
+                        <nav>
+                            <ul>
+                                <li><a href="index.html" class="navlinks">home</a></li>
+                                <li><a href="packages.html" class="navlinks">packages</a></li>
+                                <li><a href="about-us.html" class="navlinks">about</a></li>
+                                <li><a href="contact-us.html" class="navlinks">contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="social-media">
+                        <ul>
+                            <li><a href="inquiry.html" class="header-btn" style="background-color: var(--primary); color: #000; border-color: var(--primary);">Plan My Trip</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="common-hero-banner" style="height: 400px; position: relative; overflow: hidden;">
+            <img src="./asset/images/Banner/BannerContact.png" alt="Inquiry Banner" class="w-100" style="height: 100%; object-fit: cover;">
+            <div class="common-hero-content">
+                <h1 style="font-weight: 800; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Plan Your Dream Journey</h1>
+                <p class="text-white" style="font-size: 1.1rem; opacity: 0.9;">Tell us your preferences and we'll craft the perfect itinerary for you.</p>
+            </div>
+        </section>
+
+        <!-- Inquiry Form Section -->
+        <section class="inquiry-section">
+            <div class="container">
+                <div class="inquiry-glass-card">
+                    <div id="inquiryFormContainer">
+                        <h2 class="heading--1 text-center" style="margin-bottom: 10px;">Travel Inquiry Form</h2>
+                        <p class="text-center" style="color: #64748b; margin-bottom: 40px;">Fill out the details below and our travel experts will get back to you within 24 hours.</p>
+
+                        <form id="inquiryForm" class="inquiry-grid" action="https://docs.google.com/forms/d/e/1FAIpQLSc-Nj_8OC2bD-0glAzS-Gf7yRqLV6C-YUHViC4OisBzgqBAWg/formResponse" method="post" target="hidden_iframe">
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="entry.688820709" class="inquiry-input" placeholder="John Doe" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="email">Email Address</label>
+                                <input type="email" id="email" name="entry.836591933" class="inquiry-input" placeholder="john@example.com" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="entry.617964717" class="inquiry-input" placeholder="+91 00000 00000" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="destOfInterest">Destination of Interest</label>
+                                <input type="text" id="destOfInterest" name="entry.1730960250" class="inquiry-input" placeholder="Kashmir" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="noOfTravelers">Number of Travelers</label>
+                                <input type="number" id="noOfTravelers" name="entry.541784763" class="inquiry-input" min="1" placeholder="2" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="prefeDate">Preferred Travel Date</label>
+                                <input type="date" id="prefeDate" name="entry.638808824" class="inquiry-input" required>
+                            </div>
+                            <div class="inquiry-form-group full-width">
+                                <label class="inquiry-label" for="specialReq">Special Requirements / Message</label>
+                                <textarea class="inquiry-input" id="specialReq" name="entry.1662652782" rows="4" placeholder="Any specific hotels, flight preferences, or places you want to visit?"></textarea>
+                            </div>
+                            <div class="inquiry-form-group full-width">
+                                <button type="submit" class="btn-inquiry">Send Inquiry Now</button>
+                            </div>
+                        </form>
+                        <iframe name="hidden_iframe" style="display:none;" onload="formSubmitted()"></iframe>
+                    </div>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="successMessage" class="success-message">
+                        <div class="success-icon">✓</div>
+                        <h2 class="heading--1">Inquiry Sent Successfully!</h2>
+                        <p style="color: #64748b; margin: 20px 0 30px;">Thank you for reaching out to Atmiya Holidays. Our team will review your requirements and contact you shortly with a personalized plan.</p>
+                        <a href="index.html" class="btn--1" style="display: inline-block;">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-box">
+                    <img src="./asset/images/Logo/main_logo.png" alt="footer-logo" class="footer-logo" />
+                    <p>F-10 Orchild Blossiom, Shavion Circle, Gaurav Path Road, Pal-surat 395009.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="tel:+917048248542" data-setting="contactPhone" style="color: #fff; display: block; margin-bottom: 8px; text-decoration: none;">+91 70482 48542</a>
+                        <a href="mailto:atmiyaholidays@gmail.com" data-setting="contactEmail" style="color: #fff; display: block; text-decoration: none;">atmiyaholidays@gmail.com</a>
+                    </div>
+                </div>
+                <div class="footer-box">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="index.html" style="color: #fff; margin-bottom: 8px;">Home</a></li>
+                        <li><a href="packages.html" style="color: #fff; margin-bottom: 8px;">Packages</a></li>
+                        <li><a href="blog.html" style="color: #fff; margin-bottom: 8px;">Blog</a></li>
+                        <li><a href="about-us.html" style="color: #fff; margin-bottom: 8px;">About</a></li>
+                        <li><a href="contact-us.html" style="color: #fff; margin-bottom: 8px;">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2026 Atmiya Holidays, All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./asset/js/api.js"></script>
+    <script src="./asset/js/global-init.js"></script>
+    <script>
+        let submitted = false;
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            submitted = true;
+
+            document.getElementById('inquiryFormContainer').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            window.scrollTo({
+                top: document.querySelector('.inquiry-glass-card').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        function formSubmitted() {
+            if (submitted) {
+                document.getElementById("inquiryForm").reset();
+                submitted = false;
+            }
+        }
+    </script>
+</body>
+</html>

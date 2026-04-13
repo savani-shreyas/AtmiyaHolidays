@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target === 'trips-section') loadTrips();
             if (target === 'blogs-section') loadBlogs();
             if (target === 'settings-section') loadSiteSettings();
+            if (target === 'reviews-section') loadReviews();
         });
     });
 
@@ -88,6 +89,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const editBlogModal = document.getElementById('edit-blog-modal');
     document.getElementById('close-edit-blog-modal').addEventListener('click', () => {
         editBlogModal.classList.remove('active');
+    });
+
+    // Modal Logic (Reviews)
+    const reviewModal = document.getElementById('review-modal');
+    document.getElementById('add-review-btn')?.addEventListener('click', () => {
+        document.getElementById('review-modal-title').innerText = 'Add New Review';
+        document.getElementById('review-submit-btn').innerText = 'Publish Review';
+        document.getElementById('review-id').value = '';
+        document.getElementById('review-form').reset();
+        document.getElementById('review-image-preview').innerHTML = '';
+        reviewModal.classList.add('active');
+    });
+
+    document.getElementById('close-review-modal')?.addEventListener('click', () => {
+        reviewModal.classList.remove('active');
     });
 
     // Add Trip Form Logic
@@ -138,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch(err) {
             console.error(err);
+            alert(`Network Error: ${err.message}. Please check if the server is running.`);
         }
     });
 
@@ -188,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch(err) {
             console.error(err);
+            alert(`Update Error: ${err.message}`);
         }
     });
 
@@ -307,6 +325,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Review Form Logic
+    document.getElementById('review-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('review-id').value;
+        const name = document.getElementById('review-name').value;
+        const position = document.getElementById('review-position').value;
+        const reviewText = document.getElementById('review-text').value;
+        const image = document.getElementById('review-image').files[0];
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('position', position);
+        formData.append('reviewText', reviewText);
+        if (image) formData.append('image', image);
+
+        const token = localStorage.getItem('token');
+        const url = id ? `${API_URL}/reviews/${id}` : `${API_URL}/reviews`;
+        const method = id ? 'PUT' : 'POST';
+
+        try {
+            const res = await fetch(url, {
+                method: method,
+                headers: { 'Authorization': `Bearer ${token}` },
+                body: formData
+            });
+
+            if (res.ok) {
+                alert(`Review ${id ? 'updated' : 'published'} successfully!`);
+                reviewModal.classList.remove('active');
+                loadReviews();
+            } else {
+                const data = await res.json();
+                alert(`Error: ${data.message}`);
+            }
+        } catch (err) {
+            console.error(err);
+            alert(`Review Save Error: ${err.message}`);
+        }
+    });
+
 });
 
 function showDashboard() {
@@ -314,6 +372,7 @@ function showDashboard() {
     document.getElementById('dashboard').style.display = 'flex';
     loadTrips();
     loadBlogs();
+    loadReviews();
 }
 
 async function loadTrips() {
@@ -535,6 +594,90 @@ function previewSettingBanner(input) {
             img.className = 'img-preview';
             img.style.width = '200px';
             img.style.height = '100px';
+            container.appendChild(img);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// Review Management Functions
+async function loadReviews() {
+    try {
+        const res = await fetch(`${API_URL}/reviews`);
+        const reviews = await res.json();
+        
+        const tbody = document.getElementById('reviews-table-body');
+        if (!tbody) return;
+
+        tbody.innerHTML = reviews.map(r => `
+            <tr>
+                <td>${r.name}</td>
+                <td>${r.position}</td>
+                <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${r.reviewText}</td>
+                <td class="action-btns">
+                    <button class="btn-icon" onclick="openEditReview('${r._id}')"><i data-lucide="edit"></i></button>
+                    <button class="btn-icon delete" onclick="deleteReview('${r._id}')"><i data-lucide="trash-2"></i></button>
+                </td>
+            </tr>
+        `).join('');
+        
+        lucide.createIcons();
+    } catch (err) {
+        console.error('Error loading reviews:', err);
+    }
+}
+
+async function openEditReview(id) {
+    try {
+        const res = await fetch(`${API_URL}/reviews/${id}`);
+        if(res.ok) {
+            const r = await res.json();
+            document.getElementById('review-id').value = r._id;
+            document.getElementById('review-name').value = r.name;
+            document.getElementById('review-position').value = r.position;
+            document.getElementById('review-text').value = r.reviewText;
+            
+            document.getElementById('review-modal-title').innerText = 'Edit Review';
+            document.getElementById('review-submit-btn').innerText = 'Save Changes';
+            
+            const preview = document.getElementById('review-image-preview');
+            if (r.image) {
+                const SERVER_URL = 'http://localhost:5000';
+                preview.innerHTML = `<img src="${r.image.startsWith('http') ? r.image : SERVER_URL + r.image}" class="img-preview">`;
+            } else {
+                preview.innerHTML = '';
+            }
+            
+            document.getElementById('review-modal').classList.add('active');
+        }
+    } catch(err) {
+        console.error(err);
+    }
+}
+
+async function deleteReview(id) {
+    if(!confirm('Are you sure you want to delete this review?')) return;
+    const token = localStorage.getItem('token');
+    try {
+        const res = await fetch(`${API_URL}/reviews/${id}`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if(res.ok) loadReviews();
+    } catch(err) {
+        console.error(err);
+    }
+}
+
+function previewReviewImage(input) {
+    const container = document.getElementById('review-image-preview');
+    container.innerHTML = '';
+    if(input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'img-preview';
             container.appendChild(img);
         }
         reader.readAsDataURL(input.files[0]);

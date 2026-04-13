@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // Determine the current page or if we need dynamic content
-    const hasDynamicContent = !!document.getElementById('dynamic-trips-container') || !!document.querySelectorAll('.article-container') || !!document.getElementById('dynamic-destinations-container');
+    const hasDynamicContent = !!document.getElementById('dynamic-trips-container') || !!document.querySelectorAll('.article-container') || !!document.getElementById('dynamic-destinations-container') || !!document.getElementById('dynamic-reviews-container');
     
     if (hasDynamicContent && window.api) {
         await renderCommonDynamicContent();
@@ -13,6 +13,7 @@ async function renderCommonDynamicContent() {
     const trips = await api.getTrips();
     const places = await api.getPlaces();
     const blogs = await api.getBlogs();
+    const reviews = await api.getReviews();
 
     // 1. Render Trips (if container exists)
     const tripsContainer = document.getElementById('dynamic-trips-container');
@@ -99,6 +100,29 @@ async function renderCommonDynamicContent() {
     document.querySelectorAll('.article-section .section-header-link').forEach(link => {
         link.href = 'blog.html';
     });
+
+    // 4. Render Reviews (if container exists)
+    const reviewContainer = document.getElementById('dynamic-reviews-container');
+    if (reviewContainer && reviews.length > 0) {
+        const SERVER_URL = 'http://localhost:5000';
+        reviewContainer.innerHTML = reviews.map(r => `
+            <div class="swiper-slide review-slide">
+                <img src="./asset/images/Icon/review-icon.png" alt="review-icon" class="customer-review-img">
+                <div class="customer-review-content">
+                    <p class="customer-review-text">${r.reviewText}</p>
+                </div>
+                <div class="customer-review-footer">
+                    <div class="customer-image">
+                        <img src="${r.image ? (r.image.startsWith('http') ? r.image : SERVER_URL + r.image) : './asset/images/Icon/customer1.png'}" alt="customer-image">
+                    </div>
+                    <div>
+                        <h5 class="customer-review-name">${r.name}</h5>
+                        <p class="customer-review-position">${r.position}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
 }
 
 function initSwipers() {

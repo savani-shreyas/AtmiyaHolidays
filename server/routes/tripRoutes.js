@@ -20,8 +20,20 @@ router.post('/', protect, upload.array('images', 5), async (req, res) => {
         const { title, destination, description, duration, price, rating, reviewsCount, features, includedServices } = req.body;
         
         const images = req.files ? req.files.map(file => `/uploads/${file.filename}`) : [];
-        const parsedFeatures = features ? JSON.parse(features) : [];
-        const parsedIncludedServices = includedServices ? JSON.parse(includedServices) : [];
+        
+        // Safer parsing for Features and Services
+        const parseField = (field) => {
+            if (!field) return [];
+            if (Array.isArray(field)) return field;
+            try {
+                return typeof field === 'string' ? JSON.parse(field) : field;
+            } catch (e) {
+                return field.split(',').map(s => s.trim());
+            }
+        };
+
+        const parsedFeatures = parseField(features);
+        const parsedIncludedServices = parseField(includedServices);
 
         const trip = new Trip({
             title,
@@ -72,8 +84,18 @@ router.put('/:id', protect, upload.array('images', 5), async (req, res) => {
             trip.rating = rating || trip.rating;
             trip.reviewsCount = reviewsCount || trip.reviewsCount;
             
-            if (features) trip.features = JSON.parse(features);
-            if (includedServices) trip.includedServices = JSON.parse(includedServices);
+            const parseField = (field) => {
+                if (!field) return [];
+                if (Array.isArray(field)) return field;
+                try {
+                    return typeof field === 'string' ? JSON.parse(field) : field;
+                } catch (e) {
+                    return field.split(',').map(s => s.trim());
+                }
+            };
+
+            if (features) trip.features = parseField(features);
+            if (includedServices) trip.includedServices = parseField(includedServices);
 
             if (req.files && req.files.length > 0) {
                 const newImages = req.files.map(file => `/uploads/${file.filename}`);

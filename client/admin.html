@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Atmiya Holidays</title>
+    <link rel="shortcut icon" href="./asset/images/Logo/main_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
@@ -132,15 +133,11 @@
         }
 
         .sidebar-brand {
-            padding: 0 24px 32px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
         }
 
         .nav-link {
@@ -390,6 +387,10 @@
                     <i data-lucide="settings"></i>
                     Site Settings
                 </div>
+                <div class="nav-link" data-target="reviews-section">
+                    <i data-lucide="star"></i>
+                    Manage Reviews
+                </div>
                 <div class="nav-link" style="margin-top: auto; color: #ef4444;" id="logout-btn">
                     <i data-lucide="log-out"></i>
                     Logout
@@ -501,6 +502,38 @@
                     </div>
                     <button type="submit" class="btn-primary" style="width: auto; padding: 12px 32px;">Save Settings</button>
                 </form>
+            </div>
+        </main>
+        
+        <!-- Main Content (Reviews) -->
+        <main class="main-content" id="reviews-section" style="display: none;">
+            <div class="topbar">
+                <h1>Customer Reviews</h1>
+                <button class="btn-primary" style="width: auto;" id="add-review-btn">
+                    <i data-lucide="plus" style="width:18px;height:18px;display:inline-block;vertical-align:middle;margin-right:4px;"></i>
+                    Add New Review
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Feedbacks</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Position</th>
+                                <th>Comment</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviews-table-body">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>
@@ -711,6 +744,42 @@
                 </div>
 
                 <button type="submit" class="btn-primary" style="background-color: var(--gold); color: #fff;">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+        </div>
+    </div>
+
+    <!-- Add/Edit Review Modal -->
+    <div class="modal" id="review-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-review-modal"><i data-lucide="x"></i></button>
+            <h2 id="review-modal-title" style="margin-bottom: 24px; color: var(--primary);">Add New Review</h2>
+            <form id="review-form">
+                <input type="hidden" id="review-id">
+                <div class="form-group">
+                    <label>Customer Name</label>
+                    <input type="text" id="review-name" class="form-input" required placeholder="Ali Tufan">
+                </div>
+                <div class="form-group">
+                    <label>Position / Company</label>
+                    <input type="text" id="review-position" class="form-input" required placeholder="Product Manager, Apple Inc.">
+                </div>
+                <div class="form-group">
+                    <label>Review Comment</label>
+                    <textarea id="review-text" class="form-input" rows="4" required placeholder="Write the customer's feedback here..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Customer Photo</label>
+                    <div class="file-drop-area" onclick="document.getElementById('review-image').click()">
+                        <i data-lucide="user" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                        <p>Click to browse customer photo</p>
+                    </div>
+                    <input type="file" id="review-image" accept="image/*" style="display:none;" onchange="previewReviewImage(this)">
+                    <div id="review-image-preview" class="image-preview-container"></div>
+                </div>
+                <button type="submit" id="review-submit-btn" class="btn-primary">Publish Review</button>
             </form>
         </div>
     </div>

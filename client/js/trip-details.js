@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function renderTripDetails(t) {
-    const SERVER_URL = 'http://localhost:5000';
+    const SERVER_URL = ''; // Use relative paths
     
-    // 1. Basic Info
+    // ... basic info ...
     document.title = `${t.title} - Atmiya Holidays`;
     document.getElementById('trip-title').innerText = t.title;
     document.getElementById('trip-dest').innerHTML = `<i data-lucide="map-pin"></i> ${t.destination}`;
@@ -33,23 +33,32 @@ function renderTripDetails(t) {
     document.getElementById('trip-price').innerText = t.price;
 
     // 2. Hero Background
+    const heroBg = document.getElementById('hero-bg');
     if (t.images && t.images[0]) {
         const heroImg = t.images[0].startsWith('http') ? t.images[0] : SERVER_URL + t.images[0];
-        document.getElementById('hero-bg').style.backgroundImage = `url('${heroImg}')`;
+        heroBg.style.backgroundImage = `url('${heroImg}')`;
     }
 
     // 3. Gallery
     const galleryContainer = document.getElementById('trip-gallery');
     if (t.images && t.images.length > 0) {
-        galleryContainer.innerHTML = t.images.slice(0, 3).map(img => {
+        galleryContainer.innerHTML = t.images.map(img => {
             const imgSrc = img.startsWith('http') ? img : SERVER_URL + img;
             return `
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="changeHeroImage('${imgSrc}')">
                     <img src="${imgSrc}" alt="Trip aspect">
                 </div>
             `;
         }).join('');
     }
+
+    // Define Global Helper for Gallery
+    window.changeHeroImage = (src) => {
+        const heroBg = document.getElementById('hero-bg');
+        heroBg.style.backgroundImage = `url('${src}')`;
+        // Optional: add a smooth fade effect
+        heroBg.style.transition = 'background-image 0.5s ease-in-out';
+    };
 
     // 4. Features
     const featuresList = document.getElementById('features-list');
