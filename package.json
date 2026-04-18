@@ -1,0 +1,12 @@
+{
+  "name": "atmiya-holidays",
+  "version": "1.0.0",
+  "description": "Atmiya Holidays Travel Booking Platform",
+  "scripts": {
+    "dev": "npm run dev --prefix server",
+    "start": "npm start --prefix server",
+    "install-all": "npm install && npm install --prefix server"
+  },
+  "author": "",
+  "license": "ISC"
+}
