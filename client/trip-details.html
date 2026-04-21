@@ -28,15 +28,16 @@
 
         .details-hero {
             position: relative;
-            height: 60vh;
+            height: 80vh;
             min-height: 400px;
             background-size: cover;
             background-position: center;
             border-bottom-left-radius: 40px;
+            background-repeat: no-repeat;
             border-bottom-right-radius: 40px;
             overflow: hidden;
             margin-bottom: -60px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .details-hero::after {
@@ -263,21 +264,26 @@
             <div class="container">
                 <div class="header">
                     <div class="logo-box">
-                        <img src="./asset/images/Logo/main_logo.png" alt="Logo" class="header-logo-image">
+                        <a href="./index.html">
+                            <img src="./asset/images/Logo/main_logo.png" alt="Logo" class="header-logo-image">
+                        </a>
                     </div>
                     <div class="navigation">
                         <nav>
                             <ul>
-                                <li><a href="index.html" class="navlinks">home</a></li>
-                                <li><a href="trips.html" class="navlinks">trips</a></li>
-                                <li><a href="admin.html" class="navlinks">admin</a></li>
+                                <li><a href="./about-us.html" class="navlinks">about us</a></li>
+                                <li><a href="./packages.html" class="navlinks">packages</a></li>
+                                <li><a href="./blog.html" class="navlinks">blog</a></li>
+                                <li><a href="./contact-us.html" class="navlinks">contact us</a></li>
+                                <li><a href="./inquiry.html" class="navlinks">inquiry</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="social-media">
                         <ul>
-                            <li><a href="#" class="header-btn">help</a></li>
-                            <li><a href="#" class="header-btn">log in</a></li>
+                            <li>
+                                <a href="#" class="header-btn">whats app</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -402,6 +408,7 @@
     <script src="./asset/js/api.js"></script>
     <script src="./asset/js/global-init.js"></script>
     <script src="./js/trip-details.js"></script>
+    <script src="./asset/js/header.js"></script>
     <script>
         lucide.createIcons();
     </script>

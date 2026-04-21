@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // Determine the current page or if we need dynamic content
     const hasDynamicContent = !!document.getElementById('dynamic-trips-container') || !!document.querySelectorAll('.article-container') || !!document.getElementById('dynamic-destinations-container') || !!document.getElementById('dynamic-reviews-container');
     
     if (hasDynamicContent && window.api) {
@@ -15,7 +14,6 @@ async function renderCommonDynamicContent() {
     const blogs = await api.getBlogs();
     const reviews = await api.getReviews();
 
-    // 1. Render Trips (if container exists)
     const tripsContainer = document.getElementById('dynamic-trips-container');
     if (tripsContainer && trips.length > 0) {
         const SERVER_URL = 'http://localhost:5000';
@@ -140,6 +138,15 @@ function initSwipers() {
             slidesPerView: 1,
             loop: true,
             autoplay: { delay: 2500, disableOnInteraction: false }
+        });
+    }
+    
+    if(document.querySelector('.toorPartnerSwiper')) {
+        new Swiper(".toorPartnerSwiper", {
+            slidesPerView: 5,
+            loop: true,
+            autoplay: { delay: 2500, disableOnInteraction: false },
+            spaceBetween: 20
         });
     }
 }

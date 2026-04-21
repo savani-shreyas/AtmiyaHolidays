@@ -45,64 +45,65 @@ function renderBlogDetailsRoot(b, settings) {
                     </div>
                 </div>
             </div>
-
-            <div class="blog-details-grid">
-                <!-- Main Content -->
-                <div class="blog-main-article">
-                    <div class="blog-content-text">
-                        ${b.content.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('')}
-                    </div>
-                    
-                    <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #eee;">
-                        <a href="blog.html" class="blog-btn" style="display:inline-block; border-radius: 30px; padding: 12px 30px;">
-                            <i data-lucide="arrow-left" style="width:18px;vertical-align:middle;margin-right:8px;"></i> Back to Blogs
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Sticky Sidebar -->
-                <aside class="blog-sidebar">
-                    <div class="blog-sidebar-sticky">
+            <div class="container">
+                <div class="blog-details-grid">
+                    <!-- Main Content -->
+                    <div class="blog-main-article">
+                        <div class="blog-content-text">
+                            ${b.content.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('')}
+                        </div>
                         
-                        <!-- Categories Widget -->
-                        <div class="sidebar-glass-card">
-                            <h3 style="font-size: 1.25rem; margin-bottom: 20px; border-bottom: 2px solid #5ad109; padding-bottom: 10px;">Categories</h3>
-                            <ul id="dynamic-categories" class="blog-details-page-top" style="padding:0; margin:0; list-style:none;">
-                                <!-- Filled by JS -->
-                            </ul>
+                        <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #eee;">
+                            <a href="blog.html" class="blog-btn" style="display:inline-block; border-radius: 30px; padding: 12px 30px;">
+                                <i data-lucide="arrow-left" style="width:18px;vertical-align:middle;margin-right:8px;"></i> Back to Blogs
+                            </a>
                         </div>
-
-                        <!-- Recent Posts Widget -->
-                        <div class="sidebar-glass-card">
-                            <h3 style="font-size: 1.25rem; margin-bottom: 20px; border-bottom: 2px solid #5ad109; padding-bottom: 10px;">Recent Posts</h3>
-                            <div id="recent-posts-sidebar" class="recent-blog-list">
-                                <!-- Filled by JS -->
-                            </div>
-                        </div>
-
-                        <!-- Contact Widget -->
-                        <div class="sidebar-glass-card" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
-                            <h3 style="color: white; font-size: 1.25rem; margin-bottom: 15px;">${settings.sidebarTitle || 'Need Help?'}</h3>
-                            <p style="font-size: 0.9rem; margin-bottom: 25px; opacity: 0.8;">${settings.sidebarDesc || 'Contact our experts for a personalized holiday plan.'}</p>
-                            <div style="display: flex; flex-direction: column; gap: 15px;">
-                                <a href="tel:${settings.contactPhone}" class="contact-info-box" style="color: white; border-color: rgba(255,255,255,0.2);">
-                                    <img src="../asset/images/Icon/call.svg" alt="Phone" class="contact-info-box-img" /> ${settings.contactPhone || '+91 70482 48542'}
-                                </a>
-                                <a href="mailto:${settings.contactEmail}" class="contact-info-box" style="color: white; border-color: rgba(255,255,255,0.2);">
-                                    <img src="../asset/images/Icon/mail.svg" alt="Mail" class="contact-info-box-img" /> ${settings.contactEmail || 'atmiyaholidays@gmail.com'}
-                                </a>
-                            </div>
-                        </div>
-
                     </div>
-                </aside>
+
+                    <!-- Sticky Sidebar -->
+                    <aside class="blog-sidebar">
+                        <div class="blog-sidebar-sticky">
+
+                            <!-- Recent Posts Widget -->
+                            <div class="sidebar-glass-card">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 20px; border-bottom: 2px solid #5ad109; padding-bottom: 10px;">Recent Posts</h3>
+                                <div id="recent-posts-sidebar" class="recent-blog-list">
+                                    <!-- Filled by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Categories Widget -->
+                            <div class="sidebar-glass-card">
+                                <h3 style="font-size: 1.25rem; margin-bottom: 20px; border-bottom: 2px solid #5ad109; padding-bottom: 10px;">Categories</h3>
+                                <ul id="dynamic-categories" class="blog-details-page-top" style="padding:0; margin:0; list-style:none;">
+                                    <!-- Filled by JS -->
+                                </ul>
+                            </div>
+
+                            <!-- Contact Widget -->
+                            <div class="sidebar-glass-card" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
+                                <h3 style="color: white; font-size: 1.25rem; margin-bottom: 15px;">${settings.sidebarTitle || 'Need Help?'}</h3>
+                                <p style="font-size: 0.9rem; margin-bottom: 25px; opacity: 0.8;">${settings.sidebarDesc || 'Contact our experts for a personalized holiday plan.'}</p>
+                                <div style="display: flex; flex-direction: column; gap: 15px;">
+                                    <a href="tel:${settings.contactPhone}" class="contact-info-box" style="color: white; border-color: rgba(255,255,255,0.2);">
+                                        <img src="../asset/images/Icon/call.svg" alt="Phone" class="contact-info-box-img" /> ${settings.contactPhone || '+91 70482 48542'}
+                                    </a>
+                                    <a href="mailto:${settings.contactEmail}" class="contact-info-box" style="color: white; border-color: rgba(255,255,255,0.2);">
+                                        <img src="../asset/images/Icon/mail.svg" alt="Mail" class="contact-info-box-img" /> ${settings.contactEmail || 'atmiyaholidays@gmail.com'}
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </aside>
+                </div>
             </div>
         </div>
     `;
 
     root.innerHTML = html;
     document.title = `${b.title} - Atmiya Holidays`;
-    
+
     // Re-initialize Lucide icons for the new HTML
     if (window.lucide) {
         lucide.createIcons();
@@ -135,7 +136,7 @@ async function renderSidebarData(currentId) {
             const recent = blogs
                 .filter(b => b._id !== currentId)
                 .slice(0, 3);
-            
+
             recentPostsContainer.innerHTML = recent.map(r => `
                 <a href="blog-details.html?id=${r._id}" class="recent-post-item">
                     <img src="${r.image ? (r.image.startsWith('http') ? r.image : SERVER_URL + r.image) : './asset/images/Banner/BannerAboutGrid1.png'}" class="recent-post-thumb">
@@ -146,7 +147,7 @@ async function renderSidebarData(currentId) {
                 </a>
             `).join('');
         }
-        
+
         if (window.lucide) lucide.createIcons();
     } catch (err) {
         console.error('Error rendering sidebar data:', err);

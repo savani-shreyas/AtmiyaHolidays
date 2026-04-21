@@ -8,7 +8,37 @@
     <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
 </head>
 <body>
-    
+    <header>
+        <div class="header-main">
+            <div class="container">
+                <div class="header">
+                    <div class="logo-box">
+                        <a href="./index.html">
+                            <img src="./asset/images/Logo/main_logo.png" alt="Logo" class="header-logo-image">
+                        </a>
+                    </div>
+                    <div class="navigation">
+                        <nav>
+                            <ul>
+                                <li><a href="./about-us.html" class="navlinks">about us</a></li>
+                                <li><a href="./packages.html" class="navlinks">packages</a></li>
+                                <li><a href="./blog.html" class="navlinks">blog</a></li>
+                                <li><a href="./contact-us.html" class="navlinks">contact us</a></li>
+                                <li><a href="./inquiry.html" class="navlinks">inquiry</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="social-media">
+                        <ul>
+                            <li>
+                                <a href="#" class="header-btn">whats app</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <main>
         <section class="common-hero-banner">
             <img src="./asset/images/Banner/BannerAbout.png" alt="About Baner" class="w-100">
@@ -144,12 +174,9 @@
     </footer>
     <script src="./asset/js/api.js"></script>
     <script src="./asset/js/global-init.js"></script>
+    <script src="./asset/js/header.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Counter animation logic...
-        });
-    </script>
-</body>
             const counters = document.querySelectorAll(".abu-data-count");
             const animateCounter = (counter) => {
                 const target = +counter.getAttribute("data-count");

@@ -15,21 +15,26 @@
             <div class="container">
                 <div class="header">
                     <div class="logo-box">
-                        <img src="./asset/images/Logo/main_logo.png" alt="Logo" class="header-logo-image">
+                        <a href="./index.html">
+                            <img src="./asset/images/Logo/main_logo.png" alt="Logo" class="header-logo-image">
+                        </a>
                     </div>
                     <div class="navigation">
                         <nav>
                             <ul>
-                                <li><a href="index.html" class="navlinks">home</a></li>
-                                <li><a href="packages.html" class="navlinks">packages</a></li>
-                                <li><a href="about-us.html" class="navlinks">about</a></li>
-                                <li><a href="contact-us.html" class="navlinks">contact</a></li>
+                                <li><a href="./about-us.html" class="navlinks">about us</a></li>
+                                <li><a href="./packages.html" class="navlinks">packages</a></li>
+                                <li><a href="./blog.html" class="navlinks">blog</a></li>
+                                <li><a href="./contact-us.html" class="navlinks">contact us</a></li>
+                                <li><a href="./inquiry.html" class="navlinks">inquiry</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="social-media">
                         <ul>
-                            <li><a href="inquiry.html" class="header-btn" style="background-color: var(--primary); color: #000; border-color: var(--primary);">Plan My Trip</a></li>
+                            <li>
+                                <a href="#" class="header-btn">whats app</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -39,8 +44,8 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="common-hero-banner" style="height: 400px; position: relative; overflow: hidden;">
-            <img src="./asset/images/Banner/BannerContact.png" alt="Inquiry Banner" class="w-100" style="height: 100%; object-fit: cover;">
+        <section class="common-hero-banner" style="position: relative; overflow: hidden;">
+            <img src="./asset/images/Banner/BannerAbout.png" alt="Inquiry Banner" class="w-100" style="height: 100%; object-fit: cover;">
             <div class="common-hero-content">
                 <h1 style="font-weight: 800; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Plan Your Dream Journey</h1>
                 <p class="text-white" style="font-size: 1.1rem; opacity: 0.9;">Tell us your preferences and we'll craft the perfect itinerary for you.</p>
@@ -133,6 +138,7 @@
 
     <script src="./asset/js/api.js"></script>
     <script src="./asset/js/global-init.js"></script>
+    <script src="./asset/js/header.js"></script>
     <script>
         let submitted = false;
         document.getElementById('inquiryForm').addEventListener('submit', function(e) {

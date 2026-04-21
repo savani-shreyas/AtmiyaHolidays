@@ -8,19 +8,48 @@
     <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
 </head>
 <body>
-    
-    <main>
-        <section class="common-hero-banner py-40-80">
+    <header>
+        <div class="header-main">
             <div class="container">
-                <div class="blog-details-page-container" id="blog-details-root">
-                    <div style="padding: 100px 0; text-align: center;">
-                        <span class="loading-spinner">Loading blog details...</span>
+                <div class="header">
+                    <div class="logo-box">
+                        <a href="./index.html">
+                            <img src="./asset/images/Logo/main_logo.png" alt="Logo" class="header-logo-image">
+                        </a>
                     </div>
+                    <div class="navigation">
+                        <nav>
+                            <ul>
+                                <li><a href="./about-us.html" class="navlinks">about us</a></li>
+                                <li><a href="./packages.html" class="navlinks">packages</a></li>
+                                <li><a href="./blog.html" class="navlinks">blog</a></li>
+                                <li><a href="./contact-us.html" class="navlinks">contact us</a></li>
+                                <li><a href="./inquiry.html" class="navlinks">inquiry</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="social-media">
+                        <ul>
+                            <li>
+                                <a href="#" class="header-btn">whats app</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="pb-80">
+            <div class="blog-details-page-container" id="blog-details-root">
+                <div style="padding: 100px 0; text-align: center;">
+                    <span class="loading-spinner">Loading blog details...</span>
                 </div>
             </div>
         </section>
     </main>
     <script src="./asset/js/api.js"></script>
     <script src="./js/blog-details.js"></script>
+    <script src="./asset/js/header.js"></script>
 </body>
 </html>
