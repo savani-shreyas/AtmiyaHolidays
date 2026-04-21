@@ -1292,52 +1292,158 @@ footer{
     object-position: center;
 }
 
+/* --- Responsive Design --- */
 @media screen and (max-width: 1200px) {
-    
+    .trip-container, .hotel-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 992px) {
+    .navigation, .social-media {
+        display: none;
+    }
+    
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .header-logo-image {
+        width: 60px;
+    }
+
     .category-container {
         grid-template-columns: repeat(3, 1fr);
         grid-template-areas:
             "one two three"
             "four five six";
     }
-    .cate-box:nth-child(1) {
-        height: 200px;
-    }
+    .cate-box:nth-child(1) { height: 200px; }
+    
     .icon-with-text-main {
         grid-template-columns: repeat(2, 1fr);
-        gap: 40px 20px;
-        margin-top: 25px;
+        gap: 30px;
     }
-    .trip-container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px 20px;
+
+    .trip-container, .hotel-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .hotel-grid {
-        grid-template-columns: repeat(3, 1fr);
+
+    .article-container, .packages-card-container {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .cate-title, .gallery-title {
-        font-size: 12px;
+
+    .customer-review-text {
+        width: 85%;
     }
-    .customer-review-text{
-        width: 70%;
+
+    .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 30px;
     }
-    .article-container {
-        gap: 15px;
+
+    .about-us-icon-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
     }
-    .article-date {
-        padding-right: 6px;
-        margin-right: 4px;
-    }
-    .inquiry-grid {
+
+    .about-grid2-main, .contact-main {
         grid-template-columns: 1fr;
+        gap: 40px;
     }
-    .inquiry-glass-card {
-        padding: 30px 20px;
+
+    .about-counter-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .about-counter {
+        height: auto;
+        padding: 40px 0;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .py-80 { padding: 50px 0; }
+    
+    .heading--1 { font-size: 28px; }
+    .common-hero-content h1 { font-size: 32px; }
+    
+    .inquiry-grid {
+        grid-column-gap: 0;
+        grid-template-columns: 1fr;
+    }
+    
+    .inquiry-glass-card {
+        padding: 25px;
+    }
+
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: none;
+        display: flex;
+        flex-direction: column;
+    }
+    .gallery-box { height: 200px !important; }
+}
+
+@media screen and (max-width: 600px) {
+    .container { width: 92%; }
+    
+    .category-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .cate-box { height: 180px !important; }
+    
+    .icon-with-text-main {
+        grid-template-columns: 1fr;
+    }
+
+    .trip-container, .hotel-grid, .article-container, .packages-card-container, .about-us-icon-main, .about-counter-main {
+        grid-template-columns: 1fr;
+    }
+
+    .customer-review-text {
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .heading--1 { font-size: 24px; }
+    .common-hero-content h1 { font-size: 28px; }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    footer {
+        padding: 60px 0 30px;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .newsletterFormBox {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-bottom {
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+}
+
+
+
 
 /* Visa Section Styles */
 .visa-card-container {
@@ -1480,51 +1586,6 @@ footer{
     transform: translateY(-9px) rotate(-45deg);
 }
 
-@media screen and (max-width: 992px) {
-    .navigation, .social-media {
-        display: none;
-    }
-    
-    .hamburger-menu {
-        display: flex;
-    }
 
-    .header-logo-image {
-        width: 60px;
-    }
-
-    .footer-main {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px 30px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .footer-main {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    footer {
-        padding: 60px 0 30px;
-        text-align: center;
-    }
-
-    .footer-logo {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .newsletterFormBox {
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .footer-bottom {
-        padding-top: 20px;
-        margin-top: 20px;
-    }
-}
 
 

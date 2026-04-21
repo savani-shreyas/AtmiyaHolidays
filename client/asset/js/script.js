@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const hasDynamicContent = !!document.getElementById('dynamic-trips-container') || !!document.querySelectorAll('.article-container') || !!document.getElementById('dynamic-destinations-container') || !!document.getElementById('dynamic-reviews-container');
+    const hasDynamicContent = !!document.getElementById('dynamic-trips-container') || 
+                            !!document.getElementById('dynamic-all-trips-container') || 
+                            !!document.querySelectorAll('.article-container').length || 
+                            !!document.getElementById('dynamic-destinations-container') || 
+                            !!document.getElementById('dynamic-reviews-container');
     
     if (hasDynamicContent && window.api) {
         await renderCommonDynamicContent();
@@ -15,35 +19,15 @@ async function renderCommonDynamicContent() {
     const reviews = await api.getReviews();
 
     const tripsContainer = document.getElementById('dynamic-trips-container');
+    const allTripsContainer = document.getElementById('dynamic-all-trips-container');
+    const SERVER_URL = 'http://localhost:5000';
+
     if (tripsContainer && trips.length > 0) {
-        const SERVER_URL = 'http://localhost:5000';
-        tripsContainer.innerHTML = trips.slice(0, 8).map(t => `
-            <a href="trip-details.html?id=${t._id}" class="trip-link">
-                <div class="trip-box">
-                    <div class="trip-img-box" style="overflow: hidden;">
-                        <img src="${t.images && t.images[0] ? (t.images[0].startsWith('http') ? t.images[0] : SERVER_URL + t.images[0]) : './asset/images/Trip/trip1.png'}" alt="Trip" class="w-100 h-100">
-                    </div>
-                    <div class="trip-content">
-                        <p class="trip-city">${t.destination}</p>
-                        <h5 class="trip-title">${t.title}</h5>
-                        <div class="rating-star">
-                            <div class="rating-star-box">
-                                <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
-                                <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
-                                <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
-                                <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
-                                <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
-                            </div>
-                            <p class="rating-text">${t.rating || 5.0} (${t.reviewsCount || 0})</p>
-                        </div>
-                        <div class="price-box">
-                            <h6 class="price-txt">${t.duration}</h6>
-                            <h6 class="price-txt">from $${t.price}</h6>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        `).join('');
+        tripsContainer.innerHTML = trips.slice(0, 8).map(t => renderTripCard(t, SERVER_URL)).join('');
+    }
+
+    if (allTripsContainer && trips.length > 0) {
+        allTripsContainer.innerHTML = trips.map(t => renderTripCard(t, SERVER_URL)).join('');
     }
 
     // 2. Render Destinations (if container exists)
@@ -63,7 +47,6 @@ async function renderCommonDynamicContent() {
     // 3. Render Articles (Blogs) in ALL containers
     const blogContainers = document.querySelectorAll('.article-container');
     if (blogContainers.length > 0 && blogs.length > 0) {
-        const SERVER_URL = 'http://localhost:5000';
         const blogHTML = blogs.slice(0, 3).map(b => {
             const date = new Date(b.date);
             const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' });
@@ -102,7 +85,6 @@ async function renderCommonDynamicContent() {
     // 4. Render Reviews (if container exists)
     const reviewContainer = document.getElementById('dynamic-reviews-container');
     if (reviewContainer && reviews.length > 0) {
-        const SERVER_URL = 'http://localhost:5000';
         reviewContainer.innerHTML = reviews.map(r => `
             <div class="swiper-slide review-slide">
                 <img src="./asset/images/Icon/review-icon.png" alt="review-icon" class="customer-review-img">
@@ -121,6 +103,36 @@ async function renderCommonDynamicContent() {
             </div>
         `).join('');
     }
+}
+
+function renderTripCard(t, SERVER_URL) {
+    return `
+        <a href="trip-details.html?id=${t._id}" class="trip-link">
+            <div class="trip-box">
+                <div class="trip-img-box" style="overflow: hidden;">
+                    <img src="${t.images && t.images[0] ? (t.images[0].startsWith('http') ? t.images[0] : SERVER_URL + t.images[0]) : './asset/images/Trip/trip1.png'}" alt="Trip" class="w-100 h-100">
+                </div>
+                <div class="trip-content">
+                    <p class="trip-city">${t.destination}</p>
+                    <h5 class="trip-title">${t.title}</h5>
+                    <div class="rating-star">
+                        <div class="rating-star-box">
+                            <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
+                            <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
+                            <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
+                            <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
+                            <img src="./asset/images/Icon/Rating-Full-Star.svg" alt="Star">
+                        </div>
+                        <p class="rating-text">${t.rating || 5.0} (${t.reviewsCount || 0})</p>
+                    </div>
+                    <div class="price-box">
+                        <h6 class="price-txt">${t.duration}</h6>
+                        <h6 class="price-txt">from $${t.price}</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+    `;
 }
 
 function initSwipers() {
