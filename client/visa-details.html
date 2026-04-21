@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip Details - Atmiya Holidays</title>
+    <title>Visa Exam Details - Atmiya Holidays</title>
     <link rel="shortcut icon" href="./asset/images/Logo/main_logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./asset/css/swiper.css" type="text/css">
     <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -16,7 +15,6 @@
         :root {
             --primary-modern: #5ad109;
             --secondary-modern: #1a1a1a;
-            --accent-modern: #ff6b35;
             --text-muted: #6b7280;
             --bg-light: #f9fafb;
         }
@@ -29,12 +27,11 @@
 
         .details-hero {
             position: relative;
-            height: 80vh;
-            min-height: 400px;
+            height: 85vh;
+            min-height: 500px;
             background-size: cover;
             background-position: center;
             border-bottom-left-radius: 40px;
-            background-repeat: no-repeat;
             border-bottom-right-radius: 40px;
             overflow: hidden;
             margin-bottom: -60px;
@@ -47,13 +44,13 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 50%;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            height: 60%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
         }
 
         .hero-info {
             position: absolute;
-            bottom: 80px;
+            bottom: 100px;
             left: 5%;
             z-index: 2;
             color: #fff;
@@ -61,23 +58,16 @@
         }
 
         .hero-info h1 {
-            font-size: 38px;
+            font-size: 30px;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.1;
         }
 
-        .hero-meta {
-            display: flex;
-            gap: 20px;
-            font-size: 1.1rem;
+        .hero-info p {
+            font-size: 1.2rem;
             opacity: 0.9;
-        }
-
-        .hero-meta span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            line-height: 1.6;
         }
 
         .details-container {
@@ -95,32 +85,7 @@
             background: #fff;
             border-radius: 30px;
             padding: 40px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .gallery-item {
-            height: 130px;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .section-card {
@@ -128,75 +93,90 @@
         }
 
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 12px;
+            color: var(--secondary-modern);
+        }
+
+        .section-title i {
+            color: var(--primary-modern);
         }
 
         .description {
             line-height: 1.8;
             color: #4b5563;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
         }
 
-        .features-grid {
+        .exam-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
 
-        .feature-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: #f3f4f6;
-            border-radius: 15px;
-            font-weight: 500;
+        .info-box {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
         }
 
-        .feature-box i {
-            color: var(--primary-modern);
+        .info-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-modern);
+        }
+
+        .info-box h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--secondary-modern);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
         .sidebar-sticky {
             position: sticky;
-            top: 40px;
+            top: 100px;
             height: fit-content;
         }
 
-        .booking-card {
+        .enquiry-card {
             background: #fff;
             border-radius: 30px;
-            padding: 30px;
+            padding: 35px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-            border: 1px solid #f3f4f6;
+            border: 1px solid #f1f5f9;
         }
 
-        .price-label {
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-header p {
+            color: var(--text-muted);
             font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
         }
 
-        .price-amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary-modern);
-            margin: 5px 0 20px;
-        }
-
-        .price-amount span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .btn-book {
+        .btn-enquire {
             width: 100%;
             padding: 20px;
             background: var(--primary-modern);
@@ -212,31 +192,31 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            margin-top: 20px;
         }
 
-        .btn-book:hover {
+        .btn-enquire:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(90, 209, 9, 0.3);
+            background: #4db308;
         }
 
-        .info-strip {
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .contact-item {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 15px;
-            margin: 25px 0;
-            padding: 20px 0;
-            border-top: 1px solid #f3f4f6;
-            border-bottom: 1px solid #f3f4f6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
         }
 
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-        }
-
-        .info-item span:first-child {
-            color: var(--text-muted);
+        .contact-item i {
+            color: var(--primary-modern);
         }
 
         @media (max-width: 1024px) {
@@ -246,16 +226,21 @@
 
             .sidebar-sticky {
                 position: static;
+                margin-top: 40px;
             }
         }
 
         @media (max-width: 768px) {
             .hero-info h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
 
             .details-hero {
                 height: 50vh;
+            }
+
+            .exam-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -291,73 +276,112 @@
                             </li>
                         </ul>
                     </div>
+
+                    <!-- Hamburger Menu -->
+                    <div class="hamburger-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <!-- Mobile Navigation -->
+                    <div class="mobile-nav-overlay">
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+                            <li><a href="./about-us.html">About Us</a></li>
+                            <li><a href="./visa.html">Visa</a></li>
+                            <li><a href="./packages.html">Packages</a></li>
+                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="./contact-us.html">Contact Us</a></li>
+                            <li><a href="./inquiry.html">Inquiry</a></li>
+                        </ul>
+                        <div class="mobile-cta">
+                            <a href="#" class="header-btn w-100 text-center">Whats App</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
-        <div class="details-hero" id="hero-bg">
+        <div class="details-hero" id="exam-hero">
             <div class="hero-info">
-                <h1 id="trip-title">Loading Trip...</h1>
-                <div class="hero-meta">
-                    <span id="trip-dest"><i data-lucide="map-pin"></i> ---</span>
-                    <span id="trip-duration-hero"><i data-lucide="clock"></i> ---</span>
-                    <span id="trip-rating-hero"><i data-lucide="star" style="fill: #fbbf24; color: #fbbf24;"></i>
-                        ---</span>
-                </div>
+                <h1 id="exam-title">Loading Exam...</h1>
+                <p id="exam-tagline">Providing expert guidance for your international success.</p>
             </div>
         </div>
 
         <div class="details-container">
             <div class="main-content">
-                <div class="gallery-grid" id="trip-gallery">
-                    <!-- Images will be injected here -->
+                <div class="section-card">
+                    <h2 class="section-title"><i data-lucide="info"></i> About the Exam</h2>
+                    <p class="description" id="exam-desc">Fetching details...</p>
                 </div>
 
                 <div class="section-card">
-                    <h2 class="section-title"><i data-lucide="info"></i> Overview</h2>
-                    <p class="description" id="trip-desc">Fetching details...</p>
-                </div>
-
-                <div class="section-card">
-                    <h2 class="section-title"><i data-lucide="sparkles"></i> Features</h2>
-                    <div class="features-grid" id="features-list">
-                        <!-- Features will be injected here -->
+                    <h2 class="section-title"><i data-lucide="layers"></i> Exam Structure</h2>
+                    <div class="exam-grid" id="exam-structure">
+                        <!-- Structure details will be injected here -->
                     </div>
                 </div>
 
                 <div class="section-card">
-                    <h2 class="section-title"><i data-lucide="check-circle"></i> What's Included</h2>
-                    <div class="features-grid" id="services-list">
-                        <!-- Services will be injected here -->
+                    <h2 class="section-title"><i data-lucide="award"></i> Why Choose Atmiya Holidays?</h2>
+                    <div class="exam-grid">
+                        <div class="info-box">
+                            <h4><i data-lucide="user-check"></i> Expert Faculty</h4>
+                            <p>Learn from certified trainers with years of experience in English proficiency testing.
+                            </p>
+                        </div>
+                        <div class="info-box">
+                            <h4><i data-lucide="book-open"></i> Comprehensive Material</h4>
+                            <p>Get access to updated study materials, mock tests, and practice papers.</p>
+                        </div>
+                        <div class="info-box">
+                            <h4><i data-lucide="target"></i> Personalized Coaching</h4>
+                            <p>Small batch sizes ensuring individual attention to every student's needs.</p>
+                        </div>
+                        <div class="info-box">
+                            <h4><i data-lucide="trending-up"></i> Proven Results</h4>
+                            <p>High success rate with many students achieving their desired band scores.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="sidebar-sticky">
-                <div class="booking-card">
-                    <div class="price-label">Price starts from</div>
-                    <div class="price-amount">$<span id="trip-price">0</span> <span>/ person</span></div>
+                <div class="enquiry-card">
+                    <div class="card-header">
+                        <h3>Enquire Now</h3>
+                        <p>Have questions about the exam? Our experts are here to help.</p>
+                    </div>
 
-                    <div class="info-strip">
-                        <div class="info-item">
-                            <span>Duration</span>
-                            <span id="trip-duration-side">--</span>
+                    <form action="./inquiry.html">
+                        <button type="submit" class="btn-enquire">
+                            <i data-lucide="message-square"></i> Contact an Expert
+                        </button>
+                    </form>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i data-lucide="phone"></i>
+                            <span>+91 70482 48542</span>
                         </div>
-                        <div class="info-item">
-                            <span>Rating</span>
-                            <span id="trip-rating-side">--</span>
+                        <div class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <span>atmiyaholidays@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <span>Pal-Surat, Gujarat</span>
                         </div>
                     </div>
 
-                    <button class="btn-book" onclick="alert('Proceeding to booking...')">
-                        <i data-lucide="send"></i> Book This Trip
-                    </button>
-
-                    <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
-                        Free cancellation up to 48 hours before.
-                    </p>
+                    <a href="https://wa.me/917048248542" class="btn-enquire"
+                        style="background: #25D366; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2); margin-top: 15px;">
+                        <i data-lucide="phone-call"></i> WhatsApp Us
+                    </a>
                 </div>
             </div>
         </div>
@@ -371,10 +395,15 @@
                     <p>F-10 Orchild Blossiom, Shavion Circle, Gaurav Path Road, Pal-surat 395009.</p>
                     <div style="margin-top: 15px;">
                         <a href="tel:+917048248542" data-setting="contactPhone" class="footer-icon-image"
-                            style="color: #fff; display: block; margin-bottom: 8px; text-decoration: none;">+91 70482
-                            48542</a>
+                            style="color: #fff; text-decoration: none;">
+                            <img src="./asset/images/Icon/call.svg" alt="Call">
+                            +91 70482 48542
+                        </a>
                         <a href="mailto:atmiyaholidays@gmail.com" data-setting="contactEmail" class="footer-icon-image"
-                            style="color: #fff; display: block; text-decoration: none;">atmiyaholidays@gmail.com</a>
+                            style="color: #fff; text-decoration: none;">
+                            <img src="./asset/images/Icon/mail.svg" alt="Mail">
+                            atmiyaholidays@gmail.com
+                        </a>
                     </div>
                 </div>
                 <div class="footer-box">
@@ -426,8 +455,8 @@
 
     <script src="./asset/js/api.js"></script>
     <script src="./asset/js/global-init.js"></script>
-    <script src="./js/trip-details.js"></script>
     <script src="./asset/js/header.js"></script>
+    <script src="./js/visa-details.js"></script>
     <script>
         lucide.createIcons();
     </script>

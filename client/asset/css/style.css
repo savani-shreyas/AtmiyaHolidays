@@ -566,7 +566,7 @@ footer{
 .footer-bottom{
     padding-top: 30px;
     margin-top: 30px;
-    border-top: 1px solid #dbffc3;
+    border-top: 1px solid #5ad109;
     text-align: center;
 }
 .footer-bottom p{
@@ -576,8 +576,20 @@ footer{
     font-weight: 100;
     line-height: 1.5;
 }
+.footer-icon-image {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.footer-icon-image img {
+    width: 18px;
+    height: 18px;
+    filter: invert(1);
+}
 .common-hero-banner{
     position: relative;
+    display: flex;
 }
 .common-hero-banner::after{
     content: '';
@@ -1326,3 +1338,193 @@ footer{
         padding: 30px 20px;
     }
 }
+
+/* Visa Section Styles */
+.visa-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+.visa-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    border: 1px solid #f0f0f0;
+}
+.visa-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+.visa-card-img {
+    height: 250px;
+    overflow: hidden;
+}
+.visa-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+.visa-card:hover .visa-card-img img {
+    transform: scale(1.1);
+}
+.visa-card-content {
+    padding: 25px;
+    text-align: center;
+}
+.visa-card-content h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--dark);
+    font-weight: 700;
+}
+.visa-card-content p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+.visa-card-content .btn--1 {
+    display: inline-block;
+    width: auto;
+}
+
+@media screen and (max-width: 992px) {
+    .visa-card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .visa-card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Responsive Header Styles --- */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: #000;
+    z-index: 999;
+    padding: 100px 40px 40px;
+    transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav-overlay.active {
+    right: 0;
+}
+
+.mobile-nav-overlay ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-overlay ul li {
+    margin-bottom: 25px;
+}
+
+.mobile-nav-overlay ul li a {
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.mobile-nav-overlay .mobile-cta {
+    margin-top: auto;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Hamburger Animation */
+.nav-active .hamburger-menu span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.nav-active .hamburger-menu span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-active .hamburger-menu span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media screen and (max-width: 992px) {
+    .navigation, .social-media {
+        display: none;
+    }
+    
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .header-logo-image {
+        width: 60px;
+    }
+
+    .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    footer {
+        padding: 60px 0 30px;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .newsletterFormBox {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-bottom {
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+}
+
+

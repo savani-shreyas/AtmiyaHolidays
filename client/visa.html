@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>Visa</title>
     <link rel="shortcut icon" href="./asset/images/Logo/main_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
 </head>
@@ -39,19 +39,95 @@
                             </li>
                         </ul>
                     </div>
+
+                    <!-- Hamburger Menu -->
+                    <div class="hamburger-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <!-- Mobile Navigation -->
+                    <div class="mobile-nav-overlay">
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+                            <li><a href="./about-us.html">About Us</a></li>
+                            <li><a href="./visa.html">Visa</a></li>
+                            <li><a href="./packages.html">Packages</a></li>
+                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="./contact-us.html">Contact Us</a></li>
+                            <li><a href="./inquiry.html">Inquiry</a></li>
+                        </ul>
+                        <div class="mobile-cta">
+                            <a href="#" class="header-btn w-100 text-center">Whats App</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
+
     <main>
-        <section class="pb-80">
-            <div class="blog-details-page-container" id="blog-details-root">
-                <div style="padding: 100px 0; text-align: center;">
-                    <span class="loading-spinner">Loading blog details...</span>
+        <section class="common-hero-banner">
+            <img src="./asset/images/Banner/BannerAbout.png" alt="About Baner" class="w-100">
+            <div class="common-hero-content">
+                <h1>Visa</h1>
+                <p class="text-white"><a href="./index.html" class="text-white">Home</a> > Visa </p>
+            </div>
+        </section>
+
+        <section class="py-80">
+            <div class="container">
+                <div class="header-content1">
+                    <h2 class="heading--1">Visa Exams</h2>
+                    <p class="subttl--1">Prepare for your global journey with our expert guidance on visa-required
+                        exams.</p>
+                </div>
+                <div class="visa-card-container">
+                    <!-- IELTS Card -->
+                    <div class="visa-card">
+                        <div class="visa-card-img">
+                            <img src="./asset/images/visa/ielts.png" alt="IELTS Exam">
+                        </div>
+                        <div class="visa-card-content">
+                            <h3>IELTS</h3>
+                            <p>The International English Language Testing System (IELTS) is the world's most popular
+                                English language proficiency test for higher education and global migration.</p>
+                            <a href="visa-details.html?exam=ielts" class="btn--1">Show More</a>
+                        </div>
+                    </div>
+
+                    <!-- PTE Card -->
+                    <div class="visa-card">
+                        <div class="visa-card-img">
+                            <img src="./asset/images/visa/ielts.png" alt="PTE Exam">
+                        </div>
+                        <div class="visa-card-content">
+                            <h3>PTE</h3>
+                            <p>PTE Academic is a computer-based English language test accepted by educational
+                                institutions and governments around the world for study and migration.</p>
+                            <a href="visa-details.html?exam=pte" class="btn--1">Show More</a>
+                        </div>
+                    </div>
+
+                    <!-- TOEFL Card -->
+                    <div class="visa-card">
+                        <div class="visa-card-img">
+                            <img src="./asset/images/visa/ielts.png" alt="TOEFL Exam">
+                        </div>
+                        <div class="visa-card-content">
+                            <h3>TOEFL</h3>
+                            <p>The Test of English as a Foreign Language (TOEFL) measures the ability of non-native
+                                English speakers to use and understand English as it is read, written, heard, and
+                                spoken.</p>
+                            <a href="visa-details.html?exam=toefl" class="btn--1">Show More</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+
     <footer>
         <div class="container">
             <div class="footer-main">
@@ -60,10 +136,15 @@
                     <p>F-10 Orchild Blossiom, Shavion Circle, Gaurav Path Road, Pal-surat 395009.</p>
                     <div style="margin-top: 15px;">
                         <a href="tel:+917048248542" data-setting="contactPhone" class="footer-icon-image"
-                            style="color: #fff; display: block; margin-bottom: 8px; text-decoration: none;">+91 70482
-                            48542</a>
+                            style="color: #fff; text-decoration: none;">
+                            <img src="./asset/images/Icon/call.svg" alt="Call">
+                            +91 70482 48542
+                        </a>
                         <a href="mailto:atmiyaholidays@gmail.com" data-setting="contactEmail" class="footer-icon-image"
-                            style="color: #fff; display: block; text-decoration: none;">atmiyaholidays@gmail.com</a>
+                            style="color: #fff; text-decoration: none;">
+                            <img src="./asset/images/Icon/mail.svg" alt="Mail">
+                            atmiyaholidays@gmail.com
+                        </a>
                     </div>
                 </div>
                 <div class="footer-box">
@@ -113,8 +194,7 @@
         </div>
     </footer>
 
-    <script src="./asset/js/api.js"></script>
-    <script src="./js/blog-details.js"></script>
+    <script src="./asset/js/global-init.js"></script>
     <script src="./asset/js/header.js"></script>
 </body>
 

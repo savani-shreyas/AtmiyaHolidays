@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     handleHeaderScroll();
+    handleMobileMenu();
 });
 
 function handleHeaderScroll() {
@@ -12,3 +13,29 @@ function handleHeaderScroll() {
         }
     });
 }
+
+function handleMobileMenu() {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobileNav = document.querySelector('.mobile-nav-overlay');
+    const body = document.body;
+    const header = document.querySelector('header');
+
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            header.classList.toggle('nav-active');
+            // Prevent scrolling when menu is open
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when a link is clicked
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                header.classList.remove('nav-active');
+                body.style.overflow = '';
+            });
+        });
+    }
+}
