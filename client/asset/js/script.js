@@ -125,9 +125,8 @@ function renderTripCard(t, SERVER_URL) {
                         </div>
                         <p class="rating-text">${t.rating || 5.0} (${t.reviewsCount || 0})</p>
                     </div>
-                    <div class="price-box">
-                        <h6 class="price-txt">${t.duration}</h6>
-                        <h6 class="price-txt">from $${t.price}</h6>
+                    <div class="inquiry-box">
+                        <button class="btn btn--1">Inquiry</button>
                     </div>
                 </div>
             </div>
@@ -140,7 +139,7 @@ function initSwipers() {
         new Swiper(".heroSwiper", {
             slidesPerView: 1,
             loop: true,
-            autoplay: { delay: 2500, disableOnInteraction: false },
+            autoplay: { delay: 5000, disableOnInteraction: false },
             navigation: { nextEl: ".hero-btn-next", prevEl: ".hero-btn-prev" },
         });
     }
@@ -149,7 +148,8 @@ function initSwipers() {
         new Swiper(".reviewSwiper", {
             slidesPerView: 1,
             loop: true,
-            autoplay: { delay: 2500, disableOnInteraction: false }
+            autoplay: { delay: 6000, disableOnInteraction: false },
+            navigation: { nextEl: ".review-btn-next", prevEl: ".review-btn-prev" },
         });
     }
     
@@ -158,6 +158,15 @@ function initSwipers() {
             slidesPerView: 5,
             loop: true,
             autoplay: { delay: 2500, disableOnInteraction: false },
+            spaceBetween: 20
+        });
+    }
+    
+    if(document.querySelector('.hotelSiper')) {
+        new Swiper(".hotelSiper", {
+            slidesPerView: 1,
+            loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
             spaceBetween: 20
         });
     }

@@ -45,7 +45,7 @@ function renderBlogDetailsRoot(b, settings) {
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container py-40-80">
                 <div class="blog-details-grid">
                     <!-- Main Content -->
                     <div class="blog-main-article">
