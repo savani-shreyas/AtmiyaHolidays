@@ -1409,7 +1409,7 @@ footer {
     height: 100vh;
     background-color: #000;
     z-index: 999;
-    padding: 30px;
+    padding: 20px 30px 30px;
     transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -1420,8 +1420,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
