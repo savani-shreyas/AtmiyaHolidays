@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking - Atmiya Holidays</title>
+    <link rel="shortcut icon" href="./asset/images/Logo/main_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body style="background-color: #f8fafc;">
+
+    <header></header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="common-hero-banner" style="position: relative; overflow: hidden;">
+            <img src="./asset/images/Banner/flight-booking-banner.png" alt="Flight Booking Banner" class="w-100"
+                style="height: 100%; object-fit: cover;">
+            <div class="common-hero-content">
+                <h1 style="font-weight: 800; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Flight Booking</h1>
+                <p class="text-white" style="font-size: 1.1rem; opacity: 0.9;">Fast and easy flight bookings to your favorite destinations worldwide.</p>
+            </div>
+        </section>
+
+        <!-- Inquiry Form Section -->
+        <section class="inquiry-section">
+            <div class="container">
+                <div class="inquiry-glass-card">
+                    <div id="inquiryFormContainer">
+                        <h2 class="heading--1 text-center" style="margin-bottom: 10px;">Flight Inquiry Form</h2>
+                        <p class="text-center" style="color: #64748b; margin-bottom: 40px;">Ready to fly? Fill out the details below and we'll find the best flight deals for you.</p>
+
+                        <form id="flightForm" class="inquiry-grid">
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" class="inquiry-input"
+                                    placeholder="John Doe" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="email">Email Address</label>
+                                <input type="email" id="email" name="email" class="inquiry-input"
+                                    placeholder="john@example.com" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="inquiry-input"
+                                    placeholder="+91 00000 00000" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="tripType">Trip Type</label>
+                                <select id="tripType" name="tripType" class="inquiry-input" required>
+                                    <option value="roundtrip">Round Trip</option>
+                                    <option value="oneway">One Way</option>
+                                    <option value="multicity">Multi-City</option>
+                                </select>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="from">From</label>
+                                <input type="text" id="from" name="from" class="inquiry-input"
+                                    placeholder="Origin City/Airport" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="to">To</label>
+                                <input type="text" id="to" name="to" class="inquiry-input"
+                                    placeholder="Destination City/Airport" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="departureDate">Departure Date</label>
+                                <input type="date" id="departureDate" name="departureDate" class="inquiry-input" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="returnDate">Return Date (Optional)</label>
+                                <input type="date" id="returnDate" name="returnDate" class="inquiry-input">
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="passengers">Passengers</label>
+                                <input type="number" id="passengers" name="passengers" class="inquiry-input" min="1" placeholder="1" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="class">Class</label>
+                                <select id="class" name="class" class="inquiry-input" required>
+                                    <option value="economy">Economy</option>
+                                    <option value="premium_economy">Premium Economy</option>
+                                    <option value="business">Business</option>
+                                    <option value="first">First Class</option>
+                                </select>
+                            </div>
+                            <div class="inquiry-form-group full-width">
+                                <label class="inquiry-label" for="specialReq">Special Requests</label>
+                                <textarea class="inquiry-input" id="specialReq" name="specialReq" rows="4"
+                                    placeholder="Any specific airline preference or seat requirements?"></textarea>
+                            </div>
+                            <div class="inquiry-form-group full-width">
+                                <button type="submit" class="btn-inquiry">Search Flights</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="success-message">
+                        <div class="success-icon">✓</div>
+                        <h2 class="heading--1">Request Submitted!</h2>
+                        <p style="color: #64748b; margin: 20px 0 30px;">Thank you for your inquiry. Our travel agents will search for the best fares and get back to you with a quote shortly.</p>
+                        <a href="index.html" class="btn--1" style="display: inline-block;">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="./asset/js/api.js"></script>
+    <script src="./asset/js/global-init.js"></script>
+    <script src="./asset/js/header.js"></script>
+    <script>
+        document.getElementById('flightForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('inquiryFormContainer').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            window.scrollTo({
+                top: document.querySelector('.inquiry-glass-card').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+	<script src="./asset/js/component-loader.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Hub - Atmiya Holidays</title>
+    <link rel="shortcut icon" href="./asset/images/Logo/main_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body style="background-color: #f8fafc;">
+
+    <header></header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="common-hero-banner" style="position: relative; overflow: hidden;">
+            <img src="./asset/images/Banner/car-rental-banner.png" alt="Car Rental Banner" class="w-100"
+                style="height: 100%; object-fit: cover;">
+            <div class="common-hero-content">
+                <h1 style="font-weight: 800; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Car Rental Hub</h1>
+                <p class="text-white" style="font-size: 1.1rem; opacity: 0.9;">Reliable and comfortable car rental services for your travel needs.</p>
+            </div>
+        </section>
+
+        <!-- Inquiry Form Section -->
+        <section class="inquiry-section">
+            <div class="container">
+                <div class="inquiry-glass-card">
+                    <div id="inquiryFormContainer">
+                        <h2 class="heading--1 text-center" style="margin-bottom: 10px;">Car Rental Inquiry</h2>
+                        <p class="text-center" style="color: #64748b; margin-bottom: 40px;">Book your ride with ease. Fill out the details below and we'll get back to you with the best rates.</p>
+
+                        <form id="carRentalForm" class="inquiry-grid">
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" class="inquiry-input"
+                                    placeholder="John Doe" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="email">Email Address</label>
+                                <input type="email" id="email" name="email" class="inquiry-input"
+                                    placeholder="john@example.com" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="inquiry-input"
+                                    placeholder="+91 00000 00000" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="carType">Car Type</label>
+                                <select id="carType" name="carType" class="inquiry-input" required>
+                                    <option value="" disabled selected>Select Car Type</option>
+                                    <option value="sedan">Sedan</option>
+                                    <option value="suv">SUV</option>
+                                    <option value="luxury">Luxury Car</option>
+                                    <option value="minivan">Minivan / Tempo Traveller</option>
+                                    <option value="hatchback">Hatchback</option>
+                                </select>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="pickupLoc">Pickup Location</label>
+                                <input type="text" id="pickupLoc" name="pickupLoc" class="inquiry-input"
+                                    placeholder="City or Airport" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="dropoffLoc">Drop-off Location</label>
+                                <input type="text" id="dropoffLoc" name="dropoffLoc" class="inquiry-input"
+                                    placeholder="City or Airport" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="pickupDate">Pickup Date</label>
+                                <input type="date" id="pickupDate" name="pickupDate" class="inquiry-input" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="dropoffDate">Drop-off Date</label>
+                                <input type="date" id="dropoffDate" name="dropoffDate" class="inquiry-input" required>
+                            </div>
+                            <div class="inquiry-form-group full-width">
+                                <label class="inquiry-label" for="specialReq">Special Requirements</label>
+                                <textarea class="inquiry-input" id="specialReq" name="specialReq" rows="4"
+                                    placeholder="Any specific car model or additional services like driver needed?"></textarea>
+                            </div>
+                            <div class="inquiry-form-group full-width">
+                                <button type="submit" class="btn-inquiry">Submit Rental Inquiry</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="success-message">
+                        <div class="success-icon">✓</div>
+                        <h2 class="heading--1">Request Received!</h2>
+                        <p style="color: #64748b; margin: 20px 0 30px;">Thank you for choosing Atmiya Holidays. Our team will contact you shortly with car availability and pricing.</p>
+                        <a href="index.html" class="btn--1" style="display: inline-block;">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="./asset/js/api.js"></script>
+    <script src="./asset/js/global-init.js"></script>
+    <script src="./asset/js/header.js"></script>
+    <script>
+        document.getElementById('carRentalForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('inquiryFormContainer').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            window.scrollTo({
+                top: document.querySelector('.inquiry-glass-card').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+	<script src="./asset/js/component-loader.js"></script>
+</body>
+
+</html>

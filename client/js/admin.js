@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target === 'blogs-section') loadBlogs();
             if (target === 'settings-section') loadSiteSettings();
             if (target === 'reviews-section') loadReviews();
+            if (target === 'internationalTrip-section') loadIntlTrips();
+            if (target === 'domesticTrip-section') loadDomTrips();
         });
     });
 
@@ -362,6 +364,74 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             console.error(err);
             alert(`Review Save Error: ${err.message}`);
+        }
+    });
+
+    // International Trip Form
+    document.getElementById('international-trip-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('intl-trip-name').value;
+        const type = document.getElementById('intl-trip-type').value;
+        const image = document.getElementById('intl-trip-image').files[0];
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('type', type);
+        if (image) formData.append('image', image);
+
+        const token = localStorage.getItem('token');
+        try {
+            const res = await fetch(`${API_URL}/category-trips`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` },
+                body: formData
+            });
+
+            if (res.ok) {
+                alert('International Trip added successfully!');
+                document.getElementById('international-trip-form').reset();
+                document.getElementById('intl-trip-image-preview').innerHTML = '';
+                loadIntlTrips();
+            } else {
+                const data = await res.json();
+                alert(`Error: ${data.message}`);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+
+    // Domestic Trip Form
+    document.getElementById('domestic-trip-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('dom-trip-name').value;
+        const type = document.getElementById('dom-trip-type').value;
+        const image = document.getElementById('dom-trip-image').files[0];
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('type', type);
+        if (image) formData.append('image', image);
+
+        const token = localStorage.getItem('token');
+        try {
+            const res = await fetch(`${API_URL}/category-trips`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` },
+                body: formData
+            });
+
+            if (res.ok) {
+                alert('Domestic Trip added successfully!');
+                document.getElementById('domestic-trip-form').reset();
+                document.getElementById('dom-trip-image-preview').innerHTML = '';
+                loadDomTrips();
+            } else {
+                const data = await res.json();
+                alert(`Error: ${data.message}`);
+            }
+        } catch (err) {
+            console.error(err);
         }
     });
 
@@ -681,5 +751,85 @@ function previewReviewImage(input) {
             container.appendChild(img);
         }
         reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// Generic image preview used by CategoryTrips
+function previewImage(input, previewId) {
+    const container = document.getElementById(previewId);
+    container.innerHTML = '';
+    if(input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'img-preview';
+            container.appendChild(img);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// Category Trips Data Loading
+async function loadIntlTrips() {
+    try {
+        const res = await fetch(`${API_URL}/category-trips?type=international`);
+        const trips = await res.json();
+        const tbody = document.getElementById('intl-trips-table-body');
+        if (!tbody) return;
+        const SERVER_URL = 'http://localhost:5000';
+        tbody.innerHTML = trips.map(t => `
+            <tr>
+                <td>${t.image ? `<img src="${t.image.startsWith('http') ? t.image : SERVER_URL + t.image}" style="width:50px;height:50px;object-fit:cover;border-radius:4px;">` : 'No Image'}</td>
+                <td>${t.name}</td>
+                <td style="text-transform: capitalize;">${t.type}</td>
+                <td class="action-btns">
+                    <button class="btn-icon delete" onclick="deleteCategoryTrip('${t._id}', 'international')"><i data-lucide="trash-2"></i></button>
+                </td>
+            </tr>
+        `).join('');
+        lucide.createIcons();
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+async function loadDomTrips() {
+    try {
+        const res = await fetch(`${API_URL}/category-trips?type=domestic`);
+        const trips = await res.json();
+        const tbody = document.getElementById('dom-trips-table-body');
+        if (!tbody) return;
+        const SERVER_URL = 'http://localhost:5000';
+        tbody.innerHTML = trips.map(t => `
+            <tr>
+                <td>${t.image ? `<img src="${t.image.startsWith('http') ? t.image : SERVER_URL + t.image}" style="width:50px;height:50px;object-fit:cover;border-radius:4px;">` : 'No Image'}</td>
+                <td>${t.name}</td>
+                <td style="text-transform: capitalize;">${t.type}</td>
+                <td class="action-btns">
+                    <button class="btn-icon delete" onclick="deleteCategoryTrip('${t._id}', 'domestic')"><i data-lucide="trash-2"></i></button>
+                </td>
+            </tr>
+        `).join('');
+        lucide.createIcons();
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+async function deleteCategoryTrip(id, type) {
+    if(!confirm('Are you sure you want to delete this trip?')) return;
+    const token = localStorage.getItem('token');
+    try {
+        const res = await fetch(`${API_URL}/category-trips/${id}`, {
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if(res.ok) {
+            if(type === 'international') loadIntlTrips();
+            else loadDomTrips();
+        }
+    } catch(err) {
+        console.error(err);
     }
 }

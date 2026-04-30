@@ -27,6 +27,7 @@ app.use('/api/trips', require('./routes/tripRoutes'));
 app.use('/api/blogs', require('./routes/blogRoutes'));
 app.use('/api/settings', require('./routes/settingsRoutes'));
 app.use('/api/reviews', require('./routes/reviewRoutes'));
+app.use('/api/category-trips', require('./routes/categoryTripRoutes'));
 
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, '../client')));

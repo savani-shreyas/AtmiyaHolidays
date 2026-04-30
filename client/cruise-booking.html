@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruise Booking - Atmiya Holidays</title>
+    <link rel="shortcut icon" href="./asset/images/Logo/main_logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./asset/css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body style="background-color: #f8fafc;">
+
+    <header></header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="common-hero-banner" style="position: relative; overflow: hidden;">
+            <img src="./asset/images/Banner/cruise-booking-banner.png" alt="Cruise Booking Banner" class="w-100"
+                style="height: 100%; object-fit: cover;">
+            <div class="common-hero-content">
+                <h1 style="font-weight: 800; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Cruise Booking</h1>
+                <p class="text-white" style="font-size: 1.1rem; opacity: 0.9;">Experience the luxury of cruising through breathtaking oceans and destinations.</p>
+            </div>
+        </section>
+
+        <!-- Inquiry Form Section -->
+        <section class="inquiry-section">
+            <div class="container">
+                <div class="inquiry-glass-card">
+                    <div id="inquiryFormContainer">
+                        <h2 class="heading--1 text-center" style="margin-bottom: 10px;">Cruise Inquiry Form</h2>
+                        <p class="text-center" style="color: #64748b; margin-bottom: 40px;">Sail away to your dream destination. Provide your details and we'll find the perfect cruise for you.</p>
+
+                        <form id="cruiseForm" class="inquiry-grid">
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" class="inquiry-input"
+                                    placeholder="John Doe" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="email">Email Address</label>
+                                <input type="email" id="email" name="email" class="inquiry-input"
+                                    placeholder="john@example.com" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="inquiry-input"
+                                    placeholder="+91 00000 00000" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="destination">Destination</label>
+                                <input type="text" id="destination" name="destination" class="inquiry-input"
+                                    placeholder="e.g. Caribbean, Mediterranean, Maldives" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="departurePort">Preferred Departure Port</label>
+                                <input type="text" id="departurePort" name="departurePort" class="inquiry-input"
+                                    placeholder="e.g. Mumbai, Singapore, Dubai">
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="departureDate">Preferred Departure Date</label>
+                                <input type="date" id="departureDate" name="departureDate" class="inquiry-input" required>
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="duration">Duration (Nights)</label>
+                                <input type="number" id="duration" name="duration" class="inquiry-input" min="1" placeholder="7">
+                            </div>
+                            <div class="inquiry-form-group">
+                                <label class="inquiry-label" for="travelers">Number of Travelers</label>
+                                <input type="number" id="travelers" name="travelers" class="inquiry-input" min="1" placeholder="2" required>
+                            </div>
+                            <div class="inquiry-form-group full-width">
+                                <label class="inquiry-label" for="specialReq">Special Requirements / Cabin Type</label>
+                                <textarea class="inquiry-input" id="specialReq" name="specialReq" rows="4"
+                                    placeholder="Any specific cruise line, balcony cabin, or dietary needs?"></textarea>
+                            </div>
+                            <div class="inquiry-form-group full-width">
+                                <button type="submit" class="btn-inquiry">Send Cruise Inquiry</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="success-message">
+                        <div class="success-icon">✓</div>
+                        <h2 class="heading--1">Bon Voyage!</h2>
+                        <p style="color: #64748b; margin: 20px 0 30px;">Your cruise inquiry has been sent. Our cruise specialists will get back to you with the best available options.</p>
+                        <a href="index.html" class="btn--1" style="display: inline-block;">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="./asset/js/api.js"></script>
+    <script src="./asset/js/global-init.js"></script>
+    <script src="./asset/js/header.js"></script>
+    <script>
+        document.getElementById('cruiseForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('inquiryFormContainer').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            window.scrollTo({
+                top: document.querySelector('.inquiry-glass-card').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+	<script src="./asset/js/component-loader.js"></script>
+</body>
+
+</html>

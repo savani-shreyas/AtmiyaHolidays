@@ -44,6 +44,19 @@ const api = {
             return null;
         }
     },
+    
+    // Category Trips (International / Domestic)
+    getCategoryTrips: async (type) => {
+        try {
+            const url = type ? `${API_BASE_URL}/category-trips?type=${type}` : `${API_BASE_URL}/category-trips`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error('Failed to fetch category trips');
+            return await res.json();
+        } catch (err) {
+            console.error(err);
+            return [];
+        }
+    },
 
     // Places
     getPlaces: async () => {

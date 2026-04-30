@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="footer-main">
+        <div class="footer-box">
+            <img src="./asset/images/Logo/main_logo.png" alt="footer-logo" class="footer-logo" />
+            <p>F-10 Orchild Blossiom, Shavion Circle, Gaurav Path Road, Pal-surat 395009.</p>
+            <div style="margin-top: 15px;">
+                <a href="tel:+917048248542" data-setting="contactPhone" class="footer-icon-image"
+                    style="color: #fff; text-decoration: none;">
+                    <img src="./asset/images/Icon/call.svg" alt="Call">
+                    +91 70482 48542
+                </a>
+                <a href="mailto:atmiyaholidays@gmail.com" data-setting="contactEmail" class="footer-icon-image"
+                    style="color: #fff; text-decoration: none;">
+                    <img src="./asset/images/Icon/mail.svg" alt="Mail">
+                    atmiyaholidays@gmail.com
+                </a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h4>company</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="trip.html">Packages</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about-us.html">About</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h4>support</h4>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="about-us.html">About</a>
+                </li>
+                <li>
+                    <a href="contact-us.html">Contact</a>
+                </li>
+                <li>
+                    <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#">Terms of Service</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h4>newsletter</h4>
+            <p>Subscribe to the free newsletter and stay up to date</p>
+            <form action="#" for="newsletterForm" class="newsletterFormBox">
+                <input type="email" placeholder="Enter your email" required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address"
+                    id="newsletterForm">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright © 2026 Atmiya Holidays, All rights reserved. Design & Developed by Astrix Digital</p>
+    </div>
+</div>
+
+<!-- Inquiry Modal Overlay -->
+<div class="inquiry-modal-overlay" id="inquiryModal">
+    <div class="inquiry-modal-content">
+        <button class="close-modal-btn" onclick="closeInquiryModal()">
+            <i data-lucide="x"></i>
+        </button>
+        <div class="modal-header">
+            <h2 id="modalTargetName">Inquiry For Trip</h2>
+            <p>Please fill in your details and we'll get back to you with a custom quote.</p>
+        </div>
+        <form id="popupInquiryForm" class="modal-form-grid">
+            <input type="hidden" id="inquiryDestination" name="destination">
+            
+            <div class="modal-form-group">
+                <label class="modal-label" for="popupName">Full Name</label>
+                <input type="text" id="popupName" name="name" class="inquiry-input" placeholder="Enter your name" required>
+            </div>
+            
+            <div class="modal-form-group">
+                <label class="modal-label" for="popupEmail">Email Address</label>
+                <input type="email" id="popupEmail" name="email" class="inquiry-input" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="modal-form-group">
+                <label class="modal-label" for="popupPhone">Phone Number</label>
+                <input type="tel" id="popupPhone" name="phone" class="inquiry-input" placeholder="+91 00000 00000" required>
+            </div>
+            
+            <div class="modal-form-group">
+                <label class="modal-label" for="popupTravelers">Number of Travelers</label>
+                <input type="number" id="popupTravelers" name="travelers" class="inquiry-input" min="1" placeholder="2" required>
+            </div>
+
+            <div class="modal-form-group">
+                <label class="modal-label" for="popupDate">Preferred Date</label>
+                <input type="date" id="popupDate" name="travelDate" class="inquiry-input" required>
+            </div>
+
+            <div class="modal-form-group">
+                <label class="modal-label" for="popupDuration">Duration (Days)</label>
+                <input type="number" id="popupDuration" name="duration" class="inquiry-input" min="1" placeholder="5" required>
+            </div>
+
+            <div class="modal-form-group full-width">
+                <label class="modal-label">Travel Type</label>
+                <div class="travel-type-container">
+                    <div class="type-pill" onclick="selectType(this)">Family</div>
+                    <div class="type-pill" onclick="selectType(this)">Honeymoon</div>
+                    <div class="type-pill" onclick="selectType(this)">Adventure</div>
+                    <div class="type-pill" onclick="selectType(this)">Business</div>
+                </div>
+                <input type="hidden" id="popupTravelType" name="travelType" required>
+            </div>
+
+            <div class="modal-form-group full-width">
+                <label class="modal-label" for="popupMessage">Additional Requirements</label>
+                <textarea id="popupMessage" name="message" class="inquiry-input" rows="3" placeholder="Tell us more about your preferences..."></textarea>
+            </div>
+
+            <div class="modal-form-group full-width" style="margin-top: 10px;">
+                <button type="submit" class="btn-inquiry">Send Inquiry</button>
+            </div>
+        </form>
+
+        <!-- Success State -->
+        <div id="popupSuccess" style="display: none; text-align: center; padding: 40px 0;">
+            <div style="background: var(--primary); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; color: #000;">
+                <i data-lucide="check" style="width: 40px; height: 40px;"></i>
+            </div>
+            <h2 style="font-size: 28px; margin-bottom: 15px;">Inquiry Sent Successfully!</h2>
+            <p style="color: #64748b; margin-bottom: 30px;">Thank you for your interest. Our travel expert will contact you within 24 hours.</p>
+            <button class="btn-inquiry" onclick="closeInquiryModal()" style="width: auto; padding: 12px 40px;">Close</button>
+        </div>
+    </div>
+</div>

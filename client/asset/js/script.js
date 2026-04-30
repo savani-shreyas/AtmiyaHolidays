@@ -10,110 +10,43 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     initSwipers();
-    initInquiryModal();
+    // initInquiryModal(); // Removed as it's now in footer.html component
 });
 
-function initInquiryModal() {
-    if (!document.getElementById('inquiryModal')) {
-        const modalHTML = `
-            <div class="inquiry-modal-overlay" id="inquiryModal">
-                <div class="inquiry-modal-content">
-                    <button class="close-modal-btn" id="closeModal">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                    </button>
-                    <div class="modal-header">
-                        <h2>Plan Your Dream Trip</h2>
-                        <p>Tell us your preferences and we'll craft the perfect journey for you.</p>
-                    </div>
-                    <form id="popupInquiryForm" class="modal-form-grid">
-                        <div class="modal-form-group">
-                            <label class="modal-label">Full Name</label>
-                            <input type="text" class="modal-input" placeholder="Enter your name" required>
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="modal-label">Email Address</label>
-                            <input type="email" class="modal-input" placeholder="example@mail.com" required>
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="modal-label">Phone Number</label>
-                            <div class="phone-input-container">
-                                <input type="text" class="modal-input country-code" placeholder="+91" value="+91" style="width: 80px;">
-                                <input type="tel" class="modal-input" placeholder="00000 00000" style="flex: 1;" required>
-                            </div>
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="modal-label">No. of Travelers</label>
-                            <input type="number" class="modal-input" min="1" placeholder="e.g. 4" required>
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="modal-label">Package Duration</label>
-                            <input type="text" class="modal-input" placeholder="e.g. 5 Days / 4 Nights" required>
-                        </div>
-                        <div class="modal-form-group">
-                            <label class="modal-label">Destination</label>
-                            <input type="text" class="modal-input" id="modalDestination" placeholder="Kashmir, Kerala, etc." required>
-                        </div>
-                        <div class="modal-form-group full-width">
-                            <label class="modal-label">Travel Type</label>
-                            <div class="travel-type-container">
-                                <input type="radio" name="travelType" value="couple" id="typeCouple" checked hidden>
-                                <label for="typeCouple" class="type-pill">Couple</label>
-                                
-                                <input type="radio" name="travelType" value="family" id="typeFamily" hidden>
-                                <label for="typeFamily" class="type-pill">Family</label>
-                                
-                                <input type="radio" name="travelType" value="friends" id="typeFriends" hidden>
-                                <label for="typeFriends" class="type-pill">Friends</label>
-                            </div>
-                        </div>
-                        <div class="modal-form-group full-width">
-                            <label class="modal-label">Additional Message</label>
-                            <textarea class="modal-textarea" rows="3" placeholder="Any specific requirements?"></textarea>
-                        </div>
-                        <div class="modal-form-group full-width">
-                            <button type="submit" class="modal-btn-submit">Submit Inquiry</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-    }
+// Event Delegation for Inquiry Buttons (moved out of initInquiryModal)
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('InquiryBtn')) {
+        e.preventDefault();
+        e.stopPropagation();
 
-    // Event Delegation for Inquiry Buttons
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('InquiryBtn')) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const tripCard = e.target.closest('.trip-box');
-            if (tripCard) {
-                const destination = tripCard.querySelector('.trip-city').textContent;
-                document.getElementById('modalDestination').value = destination;
+        const tripCard = e.target.closest('.trip-box');
+        let destination = "";
+        if (tripCard) {
+            destination = tripCard.querySelector('.trip-city')?.textContent || "";
+        }
+        
+        if (typeof openInquiryModal === 'function') {
+            openInquiryModal(destination);
+        } else {
+            // Fallback if global-init.js isn't loaded yet or something
+            const modal = document.getElementById('inquiryModal');
+            if (modal) {
+                document.getElementById('modalTargetName').innerText = 'Inquiry For ' + destination;
+                document.getElementById('inquiryDestination').value = destination;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
-
-            document.getElementById('inquiryModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
         }
-
-        if (e.target.id === 'closeModal' || e.target.closest('#closeModal') || e.target.id === 'inquiryModal') {
-            document.getElementById('inquiryModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-
-    // Handle form submission
-    const popupForm = document.getElementById('popupInquiryForm');
-    if (popupForm) {
-        popupForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your inquiry! Our team will contact you soon.');
-            document.getElementById('inquiryModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            popupForm.reset();
-        });
     }
-}
+
+    if (e.target.id === 'closeModal' || e.target.closest('.close-modal-btn') || e.target.id === 'inquiryModal') {
+        const modal = document.getElementById('inquiryModal');
+        if (modal && (e.target === modal || e.target.closest('.close-modal-btn'))) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+});
 
 async function renderCommonDynamicContent() {
     const trips = await api.getTrips();
@@ -211,6 +144,35 @@ async function renderCommonDynamicContent() {
             </div>
         `).join('');
     }
+
+    // 5. Render Category Trips (International / Domestic)
+    const intlTripsContainer = document.getElementById('InternationalTrips');
+    if (intlTripsContainer) {
+        const intlTrips = await api.getCategoryTrips('international');
+        if (intlTrips.length > 0) {
+            intlTripsContainer.innerHTML = intlTrips.map(t => `
+                <div class="destination-card">
+                    <img src="${t.image ? (t.image.startsWith('http') ? t.image : SERVER_URL + t.image) : ''}" alt="${t.name}" class="destination-flag">
+                    <h5>${t.name}</h5>
+                    <button class="btn-inquiry-sm" onclick="event.stopPropagation(); openInquiryModal('${t.name}')">Inquiry</button>
+                </div>
+            `).join('');
+        }
+    }
+
+    const domTripsContainer = document.getElementById('DomesticTrips');
+    if (domTripsContainer) {
+        const domTrips = await api.getCategoryTrips('domestic');
+        if (domTrips.length > 0) {
+            domTripsContainer.innerHTML = domTrips.map(t => `
+                <div class="destination-card">
+                    <img src="${t.image ? (t.image.startsWith('http') ? t.image : SERVER_URL + t.image) : ''}" alt="${t.name}" class="${t.type === 'international' ? 'destination-flag' : 'destination-img'}">
+                    <h5>${t.name}</h5>
+                    <button class="btn-inquiry-sm" onclick="event.stopPropagation(); openInquiryModal('${t.name}')">Inquiry</button>
+                </div>
+            `).join('');
+        }
+    }
 }
 
 function renderTripCard(t, SERVER_URL) {
@@ -289,7 +251,8 @@ function initSwipers() {
             slidesPerView: 1,
             loop: true,
             autoplay: { delay: 5000, disableOnInteraction: false },
-            spaceBetween: 20
+            spaceBetween: 20,
+            navigation: { nextEl: ".hotel-btn-next", prevEl: ".hotel-btn-prev" },
         });
     }
 }

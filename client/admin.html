@@ -383,13 +383,21 @@
                     <i data-lucide="layout"></i>
                     Manage Blogs
                 </div>
-                <div class="nav-link" data-target="settings-section">
-                    <i data-lucide="settings"></i>
-                    Site Settings
-                </div>
                 <div class="nav-link" data-target="reviews-section">
                     <i data-lucide="star"></i>
                     Manage Reviews
+                </div>
+                <div class="nav-link" data-target="internationalTrip-section">
+                    <i data-lucide="plane"></i>
+                    International Trip
+                </div>
+                <div class="nav-link" data-target="domesticTrip-section">
+                    <i data-lucide="map-pin"></i>
+                    Domestic Trip
+                </div>
+                <div class="nav-link" data-target="settings-section">
+                    <i data-lucide="settings"></i>
+                    Site Settings
                 </div>
                 <div class="nav-link" style="margin-top: auto; color: #ef4444;" id="logout-btn">
                     <i data-lucide="log-out"></i>
@@ -530,6 +538,114 @@
                             </tr>
                         </thead>
                         <tbody id="reviews-table-body">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Main Content (International Trips) -->
+        <main class="main-content" id="internationalTrip-section" style="display: none;">
+            <div class="topbar">
+                <h1>International Trips Management</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Add New International Trip</h3>
+                </div>
+                <form id="international-trip-form">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="intl-trip-name" class="form-input" required placeholder="Destination Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <input type="text" id="intl-trip-type" class="form-input" value="international" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Image</label>
+                        <div class="file-drop-area" onclick="document.getElementById('intl-trip-image').click()">
+                            <i data-lucide="image" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                            <p>Click to browse image</p>
+                        </div>
+                        <input type="file" id="intl-trip-image" accept="image/*" style="display:none;" onchange="previewImage(this, 'intl-trip-image-preview')">
+                        <div id="intl-trip-image-preview" class="image-preview-container"></div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: auto; padding: 12px 32px;">Save International Trip</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>International Trips Data</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="intl-trips-table-body">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Main Content (Domestic Trips) -->
+        <main class="main-content" id="domesticTrip-section" style="display: none;">
+            <div class="topbar">
+                <h1>Domestic Trips Management</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Add New Domestic Trip</h3>
+                </div>
+                <form id="domestic-trip-form">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="dom-trip-name" class="form-input" required placeholder="Destination Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <input type="text" id="dom-trip-type" class="form-input" value="domestic" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Image</label>
+                        <div class="file-drop-area" onclick="document.getElementById('dom-trip-image').click()">
+                            <i data-lucide="image" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                            <p>Click to browse image</p>
+                        </div>
+                        <input type="file" id="dom-trip-image" accept="image/*" style="display:none;" onchange="previewImage(this, 'dom-trip-image-preview')">
+                        <div id="dom-trip-image-preview" class="image-preview-container"></div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: auto; padding: 12px 32px;">Save Domestic Trip</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Domestic Trips Data</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dom-trips-table-body">
                             <!-- Dynamic Content -->
                         </tbody>
                     </table>
