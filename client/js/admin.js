@@ -119,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const reviewsCount = document.getElementById('trip-reviews').value;
         const features = document.getElementById('trip-features').value.split(',').map(f => f.trim()).filter(f => f !== '');
         const services = document.getElementById('trip-services').value.split(',').map(s => s.trim()).filter(s => s !== '');
-        const price = document.getElementById('trip-price').value;
         const files = document.getElementById('trip-images').files;
 
         const formData = new FormData();
@@ -131,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('reviewsCount', reviewsCount);
         formData.append('features', JSON.stringify(features));
         formData.append('includedServices', JSON.stringify(services));
-        formData.append('price', price);
         for(let i=0; i<files.length; i++){
             formData.append('images', files[i]);
         }
@@ -172,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const reviewsCount = document.getElementById('edit-trip-reviews').value;
         const features = document.getElementById('edit-trip-features').value.split(',').map(f => f.trim()).filter(f => f !== '');
         const services = document.getElementById('edit-trip-services').value.split(',').map(s => s.trim()).filter(s => s !== '');
-        const price = document.getElementById('edit-trip-price').value;
         const files = document.getElementById('edit-trip-images').files;
 
         const formData = new FormData();
@@ -184,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('reviewsCount', reviewsCount);
         formData.append('features', JSON.stringify(features));
         formData.append('includedServices', JSON.stringify(services));
-        formData.append('price', price);
         for(let i=0; i<files.length; i++){
             formData.append('images', files[i]);
         }
@@ -483,7 +479,6 @@ async function openEditTrip(id) {
             document.getElementById('edit-trip-reviews').value = trip.reviewsCount || 0;
             document.getElementById('edit-trip-features').value = trip.features ? trip.features.join(', ') : '';
             document.getElementById('edit-trip-services').value = trip.includedServices ? trip.includedServices.join(', ') : '';
-            document.getElementById('edit-trip-price').value = trip.price;
             
             document.getElementById('edit-trip-images').value = '';
             document.getElementById('edit-trip-image-preview-container').innerHTML = '';
@@ -784,6 +779,7 @@ async function loadIntlTrips() {
                 <td>${t.name}</td>
                 <td style="text-transform: capitalize;">${t.type}</td>
                 <td class="action-btns">
+                    <button class="btn-icon edit" onclick="openEditCategoryTripModal('${encodeURIComponent(JSON.stringify(t))}')"><i data-lucide="edit"></i></button>
                     <button class="btn-icon delete" onclick="deleteCategoryTrip('${t._id}', 'international')"><i data-lucide="trash-2"></i></button>
                 </td>
             </tr>
@@ -807,6 +803,7 @@ async function loadDomTrips() {
                 <td>${t.name}</td>
                 <td style="text-transform: capitalize;">${t.type}</td>
                 <td class="action-btns">
+                    <button class="btn-icon edit" onclick="openEditCategoryTripModal('${encodeURIComponent(JSON.stringify(t))}')"><i data-lucide="edit"></i></button>
                     <button class="btn-icon delete" onclick="deleteCategoryTrip('${t._id}', 'domestic')"><i data-lucide="trash-2"></i></button>
                 </td>
             </tr>
@@ -833,3 +830,60 @@ async function deleteCategoryTrip(id, type) {
         console.error(err);
     }
 }
+
+window.openEditCategoryTripModal = function(encodedTrip) {
+    const trip = JSON.parse(decodeURIComponent(encodedTrip));
+    document.getElementById('edit-category-trip-id').value = trip._id;
+    document.getElementById('edit-category-trip-name').value = trip.name;
+    document.getElementById('edit-category-trip-type').value = trip.type;
+    
+    document.getElementById('edit-category-trip-image').value = '';
+    const previewContainer = document.getElementById('edit-category-trip-image-preview');
+    if (trip.image) {
+        const SERVER_URL = 'http://localhost:5000';
+        previewContainer.innerHTML = `<img src="${trip.image.startsWith('http') ? trip.image : SERVER_URL + trip.image}" class="img-preview">`;
+    } else {
+        previewContainer.innerHTML = '';
+    }
+
+    document.getElementById('edit-category-trip-modal').classList.add('active');
+}
+
+document.getElementById('close-edit-category-trip-modal')?.addEventListener('click', () => {
+    document.getElementById('edit-category-trip-modal').classList.remove('active');
+});
+
+document.getElementById('edit-category-trip-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('edit-category-trip-id').value;
+    const name = document.getElementById('edit-category-trip-name').value;
+    const type = document.getElementById('edit-category-trip-type').value;
+    const imageFile = document.getElementById('edit-category-trip-image').files[0];
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('type', type);
+    if(imageFile) {
+        formData.append('image', imageFile);
+    }
+
+    const token = localStorage.getItem('token');
+    try {
+        const res = await fetch(`${API_URL}/category-trips/${id}`, {
+            method: 'PUT',
+            headers: { 'Authorization': `Bearer ${token}` },
+            body: formData
+        });
+
+        if(res.ok) {
+            document.getElementById('edit-category-trip-modal').classList.remove('active');
+            if(type === 'international') loadIntlTrips();
+            else loadDomTrips();
+        } else {
+            const data = await res.json();
+            alert(data.message || 'Update failed');
+        }
+    } catch(err) {
+        console.error(err);
+    }
+});

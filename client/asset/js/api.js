@@ -1,136 +1,95 @@
-const API_BASE_URL = '/api';
+let localDataCache = null;
+
+const fetchLocalData = async () => {
+    if (localDataCache) return localDataCache;
+    try {
+        // Fetch from the static json file
+        const res = await fetch('/data.json');
+        if (!res.ok) {
+            // fallback for relative paths if not hosted at root
+            const fallbackRes = await fetch('./data.json');
+            if (!fallbackRes.ok) throw new Error('Failed to fetch data.json');
+            localDataCache = await fallbackRes.json();
+        } else {
+            localDataCache = await res.json();
+        }
+        return localDataCache;
+    } catch (err) {
+        console.error("Error loading static data:", err);
+        return { 
+            trips: [], 
+            categoryTrips: [], 
+            blogs: [], 
+            hotels: [], 
+            places: [], 
+            rooms: [], 
+            reviews: [], 
+            settings: {} 
+        };
+    }
+};
 
 const api = {
     // Hotels
     getHotels: async () => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/hotels`);
-            if (!res.ok) throw new Error('Failed to fetch hotels');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return [];
-        }
+        const data = await fetchLocalData();
+        return data.hotels || [];
     },
     getHotelById: async (id) => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/hotels/${id}`);
-            if (!res.ok) throw new Error('Failed to fetch hotel');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return null;
-        }
+        const data = await fetchLocalData();
+        return (data.hotels || []).find(h => h._id === id) || null;
     },
 
     // Trips
     getTrips: async () => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/trips`);
-            if (!res.ok) throw new Error('Failed to fetch trips');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return [];
-        }
+        const data = await fetchLocalData();
+        return data.trips || [];
     },
     getTripById: async (id) => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/trips/${id}`);
-            if (!res.ok) throw new Error('Failed to fetch trip details');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return null;
-        }
+        const data = await fetchLocalData();
+        return (data.trips || []).find(t => t._id === id) || null;
     },
     
     // Category Trips (International / Domestic)
     getCategoryTrips: async (type) => {
-        try {
-            const url = type ? `${API_BASE_URL}/category-trips?type=${type}` : `${API_BASE_URL}/category-trips`;
-            const res = await fetch(url);
-            if (!res.ok) throw new Error('Failed to fetch category trips');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return [];
+        const data = await fetchLocalData();
+        const trips = data.categoryTrips || [];
+        if (type) {
+            return trips.filter(t => t.type === type);
         }
+        return trips;
     },
 
     // Places
     getPlaces: async () => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/places`);
-            if (!res.ok) throw new Error('Failed to fetch places');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return [];
-        }
+        const data = await fetchLocalData();
+        return data.places || [];
     },
 
     // Rooms
     getRoomsByHotel: async (hotelId) => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/rooms?hotelId=${hotelId}`);
-            if (!res.ok) throw new Error('Failed to fetch rooms');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return [];
-        }
+        const data = await fetchLocalData();
+        return (data.rooms || []).filter(r => r.hotelId === hotelId || (r.hotelId && r.hotelId._id === hotelId));
     },
     
     // Blogs
     getBlogs: async () => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/blogs`);
-            if (!res.ok) throw new Error('Failed to fetch blogs');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return [];
-        }
+        const data = await fetchLocalData();
+        return data.blogs || [];
     },
     getReviews: async () => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/reviews`);
-            if (!res.ok) throw new Error('Failed to fetch reviews');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return [];
-        }
+        const data = await fetchLocalData();
+        return data.reviews || [];
     },
     getBlogById: async (id) => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/blogs/${id}`);
-            if (!res.ok) throw new Error('Failed to fetch blog details');
-            return await res.json();
-        } catch (err) {
-            console.error(err);
-            return null;
-        }
+        const data = await fetchLocalData();
+        return (data.blogs || []).find(b => b._id === id) || null;
     },
     
     // Site Settings
     getSettings: async () => {
-        try {
-            const res = await fetch(`${API_BASE_URL}/settings`);
-            // If server returns HTML (fallback), parse it as error
-            const contentType = res.headers.get("content-type");
-            if (!res.ok || (contentType && contentType.indexOf("text/html") !== -1)) {
-                return {
-                    contactPhone: '+91 70482 48542',
-                    contactEmail: 'atmiyaholidays@gmail.com',
-                    sidebarTitle: 'Have Any Question?',
-                    sidebarDesc: 'Contact us for any personalized travel requirements.'
-                };
-            }
-            return await res.json();
-        } catch (err) {
-            console.error('Settings fetch error:', err);
+        const data = await fetchLocalData();
+        if (!data.settings || Object.keys(data.settings).length === 0) {
             return {
                 contactPhone: '+91 70482 48542',
                 contactEmail: 'atmiyaholidays@gmail.com',
@@ -138,6 +97,7 @@ const api = {
                 sidebarDesc: 'Contact us for any personalized travel requirements.'
             };
         }
+        return data.settings;
     }
 };
 

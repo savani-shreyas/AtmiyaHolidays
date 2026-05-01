@@ -35,6 +35,28 @@ router.post('/', protect, upload.single('image'), async (req, res) => {
     }
 });
 
+// Update a category trip
+router.put('/:id', protect, upload.single('image'), async (req, res) => {
+    try {
+        const { name, type } = req.body;
+        const trip = await CategoryTrip.findById(req.params.id);
+
+        if (trip) {
+            trip.name = name || trip.name;
+            trip.type = type || trip.type;
+            if (req.file) {
+                trip.image = `/uploads/${req.file.filename}`;
+            }
+            const updatedTrip = await trip.save();
+            res.json(updatedTrip);
+        } else {
+            res.status(404).json({ message: 'Trip not found' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 // Delete a category trip
 router.delete('/:id', protect, async (req, res) => {
     try {

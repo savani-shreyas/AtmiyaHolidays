@@ -1,0 +1,219 @@
+{
+  "trips": [
+    {
+      "_id": "69dcdf3fd9dfae2e27016c92",
+      "title": "Luxury Escape to Bali",
+      "destination": "Bali, Indonesia",
+      "description": "description",
+      "duration": "5 Days / 4 Night",
+      "price": 1299,
+      "rating": 4.8,
+      "reviewsCount": 100,
+      "features": [
+        "Free Wi-Fi",
+        "Professional Guide"
+      ],
+      "includedServices": [
+        "Breakfast",
+        "Airport Transfer"
+      ],
+      "images": [
+        "/uploads/images-1776082751326.png",
+        "/uploads/images-1776082751340.png",
+        "/uploads/images-1776082751348.png",
+        "/uploads/images-1776082751354.png",
+        "/uploads/images-1776082920895.png"
+      ],
+      "createdAt": "2026-04-13T12:19:11.394Z",
+      "updatedAt": "2026-04-13T12:22:00.942Z",
+      "__v": 1
+    },
+    {
+      "_id": "69ec5a023d1d8f00f3c077d5",
+      "title": "surat",
+      "destination": "surat india",
+      "description": "none",
+      "duration": "5days",
+      "price": 100,
+      "rating": 5,
+      "reviewsCount": 20,
+      "features": [
+        "wifi"
+      ],
+      "includedServices": [
+        "lunch"
+      ],
+      "images": [
+        "/uploads/images-1777097218048.png",
+        "/uploads/images-1777097218052.png",
+        "/uploads/images-1777097218055.png",
+        "/uploads/images-1777097218058.png",
+        "/uploads/images-1777097218060.png"
+      ],
+      "createdAt": "2026-04-25T06:06:58.080Z",
+      "updatedAt": "2026-04-25T06:06:58.080Z",
+      "__v": 0
+    }
+  ],
+  "blogs": [
+    {
+      "_id": "69db25c5522fae9556d3cba3",
+      "title": "  Luxury Escape in Dubai: A City of Gold",
+      "category": "Honeymoon",
+      "content": "Dubai is a glamorous destination known for its futuristic skyline, luxury shopping, and desert adventures. From the towering Burj Khalifa to thrilling desert safaris and yacht cruises in Dubai Marina, the city offers an unmatched blend of tradition and modernity. Visitors can explore souks, indulge in world-class cuisine, and relax at luxurious resorts.",
+      "image": "/uploads/image-1775969733868.jpg",
+      "author": "Shreyas Savani",
+      "date": "2026-04-12T04:55:33.880Z",
+      "createdAt": "2026-04-12T04:55:33.886Z",
+      "updatedAt": "2026-04-12T04:55:33.886Z",
+      "__v": 0
+    },
+    {
+      "_id": "69db2865522fae9556d3cba4",
+      "title": "Incredible India: Culture, Heritage & Nature",
+      "category": "Travel",
+      "content": "India is a land of diversity, offering everything from the Himalayan mountains to tropical beaches in Goa and Kerala. Rich in culture, history, and spirituality, travelers can explore ancient temples, vibrant festivals, and delicious regional cuisines. Whether it’s Rajasthan’s palaces or Kerala’s backwaters, India promises unforgettable experiences.",
+      "image": "/uploads/image-1775970405530.jpg",
+      "author": "Shreyas Savani",
+      "date": "2026-04-12T05:06:45.545Z",
+      "createdAt": "2026-04-12T05:06:45.546Z",
+      "updatedAt": "2026-04-12T05:12:36.874Z",
+      "__v": 0
+    },
+    {
+      "_id": "69db2897522fae9556d3cba5",
+      "title": "Explore Canada: Nature’s Wonderland",
+      "category": "Family",
+      "content": "Canada is famous for its breathtaking natural beauty, including majestic mountains, pristine lakes, and vibrant cities like Toronto and Vancouver. Adventure seekers can enjoy skiing, hiking, and wildlife spotting, while urban explorers can experience multicultural cuisine and modern attractions. It’s a perfect destination for nature lovers.",
+      "image": "/uploads/image-1775970455984.jpg",
+      "author": "Shreyas Savani",
+      "date": "2026-04-12T05:07:35.987Z",
+      "createdAt": "2026-04-12T05:07:35.987Z",
+      "updatedAt": "2026-04-12T05:12:27.827Z",
+      "__v": 0
+    },
+    {
+      "_id": "69db28d1522fae9556d3cba6",
+      "title": "Vietnam Travel Guide: Hidden Gems of Asia",
+      "category": "Adventure",
+      "content": "Vietnam is a captivating destination with lush landscapes, rich history, and delicious street food. From the limestone karsts of Ha Long Bay to the bustling streets of Hanoi and Ho Chi Minh City, travelers can enjoy scenic beauty and cultural depth. The country offers a mix of adventure, relaxation, and authentic experiences.",
+      "image": "/uploads/image-1775970513331.jpg",
+      "author": "Shreyas Savani",
+      "date": "2026-04-12T05:08:33.354Z",
+      "createdAt": "2026-04-12T05:08:33.355Z",
+      "updatedAt": "2026-04-12T05:08:33.355Z",
+      "__v": 0
+    }
+  ],
+  "categoryTrips": [
+    {
+      "_id": "69f2e489ae79cb6698317075",
+      "name": "USA",
+      "type": "international",
+      "image": "/uploads/image-1777525897560.webp",
+      "createdAt": "2026-04-30T05:11:37.614Z",
+      "updatedAt": "2026-04-30T05:11:37.614Z",
+      "__v": 0
+    },
+    {
+      "_id": "69f2e5d5ae79cb6698317076",
+      "name": "Jaipur",
+      "type": "domestic",
+      "image": "/uploads/image-1777526229488.jpg",
+      "createdAt": "2026-04-30T05:17:09.498Z",
+      "updatedAt": "2026-04-30T05:17:09.498Z",
+      "__v": 0
+    }
+  ],
+  "reviews": [
+    {
+      "_id": "69dcd9bcb6f6720f088c7ff2",
+      "name": "Ali Tufan",
+      "position": "Product Manager, Apple Inc.",
+      "reviewText": "The tours in this website are great. I had been really enjoyed with my family! The team is very professional and taking care of the customers.",
+      "image": "/asset/images/Icon/customer1.png",
+      "createdAt": "2026-04-13T11:55:40.646Z",
+      "updatedAt": "2026-04-13T11:55:40.646Z",
+      "__v": 0
+    },
+    {
+      "_id": "69dcd9bcb6f6720f088c7ff3",
+      "name": "Sarah Jenkins",
+      "position": "Travel Blogger",
+      "reviewText": "Incredible experience with Atmiya Holidays. The Kashmir trip was perfectly organized and exceed all my expectations!",
+      "image": "",
+      "createdAt": "2026-04-13T11:55:40.649Z",
+      "updatedAt": "2026-04-13T11:55:40.649Z",
+      "__v": 0
+    }
+  ],
+  "settings": {
+    "_id": "69dc8d00c8f59ec89fda32aa",
+    "contactPhone": "+91 70482 48542",
+    "contactEmail": "atmiyaholidays@gmail.com",
+    "sidebarTitle": "Have Any Question?",
+    "sidebarDesc": "Contact us for any personalized travel requirements.",
+    "blogHeroBanner": "/asset/images/Banner/BannerAbout.png",
+    "createdAt": "2026-04-13T06:28:16.115Z",
+    "updatedAt": "2026-04-13T06:28:16.115Z",
+    "__v": 0
+  },
+  "hotels": [
+    {
+      "_id": "69dcd9bcb6f6720f088c7fec",
+      "name": "Taj Mahal Palace",
+      "description": "Luxury heritage hotel in Mumbai",
+      "images": [
+        "/uploads/default-hotel1.jpg"
+      ],
+      "amenities": [
+        {
+          "name": "WiFi",
+          "image": "wifi-icon-url",
+          "_id": "69dcd9bcb6f6720f088c7fed"
+        }
+      ],
+      "facilities": [
+        {
+          "icon": "pool",
+          "title": "Swimming Pool",
+          "description": "Outdoor pool",
+          "_id": "69dcd9bcb6f6720f088c7fee"
+        }
+      ],
+      "mapUrl": "https://maps.google.com/?q=taj+mahal+palace",
+      "createdAt": "2026-04-13T11:55:40.637Z",
+      "updatedAt": "2026-04-13T11:55:40.637Z",
+      "__v": 0
+    },
+    {
+      "_id": "69dcd9bcb6f6720f088c7fef",
+      "name": "The Leela Palace",
+      "description": "Modern luxury hotel in Bangalore",
+      "images": [
+        "/uploads/default-hotel2.jpg"
+      ],
+      "amenities": [
+        {
+          "name": "WiFi",
+          "image": "wifi-icon-url",
+          "_id": "69dcd9bcb6f6720f088c7ff0"
+        }
+      ],
+      "facilities": [
+        {
+          "icon": "spa",
+          "title": "Spa",
+          "description": "Full-service spa",
+          "_id": "69dcd9bcb6f6720f088c7ff1"
+        }
+      ],
+      "mapUrl": "https://maps.google.com/?q=the+leela+palace",
+      "createdAt": "2026-04-13T11:55:40.642Z",
+      "updatedAt": "2026-04-13T11:55:40.642Z",
+      "__v": 0
+    }
+  ],
+  "places": [],
+  "rooms": []
+}

@@ -696,10 +696,7 @@
                         <input type="number" id="trip-reviews" class="form-input" value="0">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Price ($)</label>
-                    <input type="number" id="trip-price" class="form-input" required>
-                </div>
+
                 
                 <div class="form-group">
                     <label>Upload Images (Max 5)</label>
@@ -757,10 +754,7 @@
                         <input type="number" id="edit-trip-reviews" class="form-input">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Price ($)</label>
-                    <input type="number" id="edit-trip-price" class="form-input" required>
-                </div>
+
                 
                 <div class="form-group">
                     <label>Upload New Images (Max 5, appends to existing)</label>
@@ -896,6 +890,35 @@
                     <div id="review-image-preview" class="image-preview-container"></div>
                 </div>
                 <button type="submit" id="review-submit-btn" class="btn-primary">Publish Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Category Trip Modal -->
+    <div class="modal" id="edit-category-trip-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-edit-category-trip-modal"><i data-lucide="x"></i></button>
+            <h2 style="margin-bottom: 24px; color: var(--primary);">Edit Category Trip</h2>
+            <form id="edit-category-trip-form">
+                <input type="hidden" id="edit-category-trip-id">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="edit-category-trip-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <input type="text" id="edit-category-trip-type" class="form-input" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Update Image (Optional)</label>
+                    <div class="file-drop-area" onclick="document.getElementById('edit-category-trip-image').click()">
+                        <i data-lucide="image" style="width:48px;height:48px;color:var(--accent);margin-bottom:12px;"></i>
+                        <p>Click to browse new image</p>
+                    </div>
+                    <input type="file" id="edit-category-trip-image" accept="image/*" style="display:none;" onchange="previewImage(this, 'edit-category-trip-image-preview')">
+                    <div id="edit-category-trip-image-preview" class="image-preview-container"></div>
+                </div>
+                <button type="submit" class="btn-primary">Save Changes</button>
             </form>
         </div>
     </div>

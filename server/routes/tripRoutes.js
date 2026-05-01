@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 // Create a trip (Admin only)
 router.post('/', protect, upload.array('images', 5), async (req, res) => {
     try {
-        const { title, destination, description, duration, price, rating, reviewsCount, features, includedServices } = req.body;
+        const { title, destination, description, duration, rating, reviewsCount, features, includedServices } = req.body;
         
         const images = req.files ? req.files.map(file => `/uploads/${file.filename}`) : [];
         
@@ -40,7 +40,7 @@ router.post('/', protect, upload.array('images', 5), async (req, res) => {
             destination,
             description,
             duration,
-            price,
+
             rating,
             reviewsCount,
             features: parsedFeatures,
@@ -72,7 +72,7 @@ router.get('/:id', async (req, res) => {
 // Update a trip (Admin only)
 router.put('/:id', protect, upload.array('images', 5), async (req, res) => {
     try {
-        const { title, destination, description, duration, price, rating, reviewsCount, features, includedServices } = req.body;
+        const { title, destination, description, duration, rating, reviewsCount, features, includedServices } = req.body;
         const trip = await Trip.findById(req.params.id);
 
         if (trip) {
@@ -80,7 +80,7 @@ router.put('/:id', protect, upload.array('images', 5), async (req, res) => {
             trip.destination = destination || trip.destination;
             trip.description = description || trip.description;
             trip.duration = duration || trip.duration;
-            trip.price = price || trip.price;
+
             trip.rating = rating || trip.rating;
             trip.reviewsCount = reviewsCount || trip.reviewsCount;
             

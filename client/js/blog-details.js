@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Fetch both blog and site settings
         const [blog, settings] = await Promise.all([
             api.getBlogById(blogId),
-            api.getSettings ? api.getSettings() : fetch('http://localhost:5000/api/settings').then(res => res.json())
+            api.getSettings()
         ]);
 
         if (blog) {
@@ -29,7 +29,8 @@ function renderBlogDetailsRoot(b, settings) {
     if (!root) return;
 
     // Use specific blog image or fallback
-    const bannerUrl = b.image ? (b.image.startsWith('http') ? b.image : SERVER_URL + b.image) : './asset/images/Banner/blog.jpg';
+    // The image path usually starts with /uploads/ which works perfectly on a static host root
+    const bannerUrl = b.image ? (b.image.startsWith('http') ? b.image : '.' + b.image) : './asset/images/Banner/blog.jpg';
 
     const html = `
         <div class="blog-details-root-wrapper">
@@ -119,7 +120,6 @@ async function renderSidebarData(currentId) {
 
     try {
         const blogs = await api.getBlogs();
-        const SERVER_URL = 'http://localhost:5000';
 
         // 1. Render Categories
         if (categoryList) {
@@ -139,7 +139,7 @@ async function renderSidebarData(currentId) {
 
             recentPostsContainer.innerHTML = recent.map(r => `
                 <a href="blog-details.html?id=${r._id}" class="recent-post-item">
-                    <img src="${r.image ? (r.image.startsWith('http') ? r.image : SERVER_URL + r.image) : './asset/images/Banner/BannerAboutGrid1.png'}" class="recent-post-thumb">
+                    <img src="${r.image ? (r.image.startsWith('http') ? r.image : '.' + r.image) : './asset/images/Banner/BannerAboutGrid1.png'}" class="recent-post-thumb">
                     <div class="recent-post-info">
                         <h4 class="recent-post-title">${r.title}</h4>
                         <span class="recent-post-date">${new Date(r.date).toLocaleDateString()}</span>
