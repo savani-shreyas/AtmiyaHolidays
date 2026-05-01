@@ -248,10 +248,11 @@ function initSwipers() {
 
     if (document.querySelector('.hotelSiper')) {
         new Swiper(".hotelSiper", {
-            slidesPerView: 1,
+            slidesPerView: 1.5,
+            centeredSlides: true,
             loop: true,
             autoplay: { delay: 5000, disableOnInteraction: false },
-            spaceBetween: 20,
+            spaceBetween: 50,
             navigation: { nextEl: ".hotel-btn-next", prevEl: ".hotel-btn-prev" },
         });
     }

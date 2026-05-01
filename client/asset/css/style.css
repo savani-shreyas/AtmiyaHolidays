@@ -1601,164 +1601,6 @@ footer {
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* --- Responsive Design --- */
-@media screen and (max-width: 1200px) {
-    .trip-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media screen and (max-width: 992px) {
-
-    .navigation,
-    .social-media {
-        display: none;
-    }
-
-    .hamburger-menu {
-        display: flex;
-    }
-
-    .header-logo-image {
-        width: 60px;
-    }
-
-    .icon-with-text-main {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-
-    .trip-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .article-container,
-    .packages-card-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .customer-review-text {
-        width: 85%;
-    }
-
-    .footer-main {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px 30px;
-    }
-
-    .about-us-icon-main {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-
-    .about-grid2-main,
-    .contact-main {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .about-counter-main {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-
-    .about-counter {
-        height: auto;
-        padding: 40px 0;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .py-80 {
-        padding: 50px 0;
-    }
-
-    .heading--1 {
-        font-size: 28px;
-    }
-
-    .common-hero-content h1 {
-        font-size: 32px;
-    }
-
-    .inquiry-grid {
-        grid-column-gap: 0;
-        grid-template-columns: 1fr;
-    }
-
-    .inquiry-glass-card {
-        padding: 25px;
-    }
-
-    .gallery-container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas: none;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .gallery-box {
-        height: 200px !important;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .container {
-        width: 92%;
-    }
-
-    .icon-with-text-main {
-        grid-template-columns: 1fr;
-    }
-
-    .trip-container,
-    .article-container,
-    .packages-card-container,
-    .about-us-icon-main,
-    .about-counter-main {
-        grid-template-columns: 1fr;
-    }
-
-    .customer-review-text {
-        width: 100%;
-        font-size: 14px;
-    }
-
-    .heading--1 {
-        font-size: 24px;
-    }
-
-    .common-hero-content h1 {
-        font-size: 28px;
-    }
-
-    .footer-main {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    footer {
-        padding: 60px 0 30px;
-        text-align: center;
-    }
-
-    .footer-logo {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .newsletterFormBox {
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .footer-bottom {
-        padding-top: 20px;
-        margin-top: 20px;
-    }
-}
-
 .visa-card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2041,4 +1883,176 @@ footer {
     background-color: #f8fafc;
     border-radius: 20px;
     border: 2px dashed #e2e8f0;
+}
+
+.hotelSiper {
+    padding: 50px 0;
+}
+
+.hotelSiper .swiper-slide {
+    transition: transform 0.4s ease;
+    transform: scale(0.95);
+}
+
+.hotelSiper .swiper-slide-active {
+    transform: scale(1.1);
+    z-index: 2;
+}
+
+/* --- Responsive Design --- */
+@media screen and (max-width: 1200px) {
+    .trip-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 992px) {
+
+    .navigation,
+    .social-media {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .header-logo-image {
+        width: 60px;
+    }
+
+    .icon-with-text-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .trip-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .article-container,
+    .packages-card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .customer-review-text {
+        width: 85%;
+    }
+
+    .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 30px;
+    }
+
+    .about-us-icon-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .about-grid2-main,
+    .contact-main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-counter-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .about-counter {
+        height: auto;
+        padding: 40px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .py-80 {
+        padding: 50px 0;
+    }
+
+    .heading--1 {
+        font-size: 28px;
+    }
+
+    .common-hero-content h1 {
+        font-size: 32px;
+    }
+
+    .inquiry-grid {
+        grid-column-gap: 0;
+        grid-template-columns: 1fr;
+    }
+
+    .inquiry-glass-card {
+        padding: 25px;
+    }
+
+    .gallery-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gallery-box {
+        height: 200px !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 92%;
+    }
+
+    .icon-with-text-main {
+        grid-template-columns: 1fr;
+    }
+
+    .trip-container,
+    .article-container,
+    .packages-card-container,
+    .about-us-icon-main,
+    .about-counter-main {
+        grid-template-columns: 1fr;
+    }
+
+    .customer-review-text {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .heading--1 {
+        font-size: 24px;
+    }
+
+    .common-hero-content h1 {
+        font-size: 28px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    footer {
+        padding: 60px 0 30px;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .newsletterFormBox {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-bottom {
+        padding-top: 20px;
+        margin-top: 20px;
+    }
 }
